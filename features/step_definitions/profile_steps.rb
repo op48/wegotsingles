@@ -1,6 +1,9 @@
+Given(/^a user exists$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
 Given(/^We are in the profile page$/) do
-  #pending # express the regexp above with the code you wish you had
-  
+  pending # express the regexp above with the code you wish you had
 end
 
 Then(/^We should see the user's first name$/) do

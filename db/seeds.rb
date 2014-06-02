@@ -10,7 +10,6 @@ joe = User.create!
 10.times do |i|
 	@mess = Message.create(subject: "test#{i}", sender_username: "admin")
 	joe.messages << @mess
-	binding.pry
 end
 
 

@@ -12,7 +12,7 @@ end
 When(/^chooses "(.*?)" as his preference$/) do |sex|
   @pref = sex
   within("#preference") do
-   choose(sex)
+   check(sex)
   end
   click_button('Sign up')
 end

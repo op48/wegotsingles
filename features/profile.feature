@@ -5,5 +5,7 @@ Scenario: A visitor sees a profile
    And We are in the profile page
  Then We should see the user's first name
    And We should see the user's last name
+   And We should see the user's username
    And We should see the user's age
+   And We should see the user's gender
    And We should see the user's about

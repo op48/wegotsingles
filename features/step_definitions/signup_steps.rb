@@ -6,10 +6,13 @@ When(/^I complete the form with valid information$/) do
   fill_in 'Email', :with => 'test@test.org'
   fill_in 'Password', :with => 'password'
   fill_in 'Password confirmation', :with => 'password'
+  save_and_open_page
+  choose('Male')
   click_button('Sign up')
 end
 
 Then(/^an account should be created$/) do
   page.should have_content('Welcome! You have signed up successfully.')
+  Male.count.should eq(1)
 end
 

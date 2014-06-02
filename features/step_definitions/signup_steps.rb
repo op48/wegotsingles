@@ -11,7 +11,7 @@ When(/^a "(.*?)" completes the form with valid information$/) do |user|
   end
 end
 
-When(/^chooses "(.*?)" as his preference$/) do |sex|
+When(/^chooses "(.*?)" as their preference$/) do |sex|
   @pref = sex
   within("#preference-#{sex.downcase}") do
    choose(sex)

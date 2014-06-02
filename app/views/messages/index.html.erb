@@ -1,5 +1,8 @@
-
+<div class = "messages">
 <% @user_messages.each do |m| %>
-<p> <%= m.subject %> </p>
-<p> <%= m.sender_username %> </p>
+<div id = "one_mess">
+<p id = "subject"> <%= m.subject %> </p>
+<p id = "user"> <%= m.sender_username %> <p>
+</div>
 <%end%>
+</div>

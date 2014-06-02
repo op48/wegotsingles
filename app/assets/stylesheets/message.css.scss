@@ -1,3 +1,26 @@
 // Place all the styles related to the Message controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.messages{
+	display: inline-block;
+	padding: 10px;
+}
+
+#user{
+	margin: 5px;
+	font-size: 1.5em;
+	background-color: black;
+	color: white;
+	display: inline-block;
+}
+
+#subject{
+	background-color: brown;
+	color: white;
+	display: inline-block;
+	font-size: 1.5em;
+}
+#one_mess{
+	border-bottom: 2px solid black;
+}

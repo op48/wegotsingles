@@ -13,16 +13,23 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
   <p>"Which gender are you?"</p>
+  <div id="gender">
   <div><%= f.radio_button :type, "Male" %><br />
     <%= f.label :type_male, "Male" %></div>
 
   <div><%= f.radio_button :type, "Female" %><br />
     <%= f.label :type_female, "Female" %></div>
-  
+  </div>
+
   <p>"Which gender are you interested in?"</p>
-  <div id="preference"><%= f.check_box :preference %><br />
-    <%= f.label :preference, "Female" %></div>
+  <div id="preference">
+  <div id="preference-female"><%= f.radio_button :preference, "Female" %><br />
+    <%= f.label :preference_female, "Female" %></div>
   
+  <div id="preference-male"><%= f.radio_button :preference, "Male" %><br />
+    <%= f.label :preference_male, "Male" %></div>
+  </div>
+
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 

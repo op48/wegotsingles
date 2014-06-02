@@ -7,10 +7,21 @@ When(/^a "(.*?)" completes the form with valid information$/) do |user|
   fill_in 'Password', :with => 'password'
   fill_in 'Password confirmation', :with => 'password'
   choose(user)
+end
+
+When(/^chooses "(.*?)" as his preference$/) do |sex|
+  @pref = sex
+  within("#preference") do
+   choose(sex)
+  end
   click_button('Sign up')
 end
 
 Then(/^a "(.*?)" account should be created$/) do |user|
   page.should have_content('Welcome! You have signed up successfully.')
   user.constantize.count.should eq(1)
+end
+
+Then(/^their preference should be recorded$/) do
+  User.first.preference == @pref 
 end

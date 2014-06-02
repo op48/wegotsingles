@@ -20,11 +20,10 @@ Feature: A Male signs up
     Then a "Female" account should be created
       And their preference should be recorded
 
-    @wip
-  Scenario: a gay woman signs up
+  Scenario: a straight woman signs up
     Given that a user is on the signup page
     When a "Female" completes the form with valid information
-      And chooses "Female" as their preference
+      And chooses "Male" as their preference
     Then a "Female" account should be created
       And their preference should be recorded
 

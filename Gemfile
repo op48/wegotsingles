@@ -11,7 +11,8 @@ gem 'spring', group: :development
 gem 'thin'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
+
+  gem 'rspec-rails', '~> 2.0.0'
   gem 'shoulda-matchers'
   gem 'faker'
   gem 'pry-byebug'

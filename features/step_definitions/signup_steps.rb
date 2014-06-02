@@ -6,13 +6,15 @@ When(/^a "(.*?)" completes the form with valid information$/) do |user|
   fill_in 'Email', :with => 'test@test.org'
   fill_in 'Password', :with => 'password'
   fill_in 'Password confirmation', :with => 'password'
+  within("#gender") do
   choose(user)
+  end
 end
 
 When(/^chooses "(.*?)" as his preference$/) do |sex|
   @pref = sex
-  within("#preference") do
-   check(sex)
+  within("#preference-#{sex.downcase}") do
+   choose(sex)
   end
   click_button('Sign up')
 end

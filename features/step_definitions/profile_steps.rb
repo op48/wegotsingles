@@ -2,14 +2,16 @@ Given(/^a user exists$/) do
   #pending # express the regexp above with the code you wish you had
   @user = User.create!(:first_name => Faker::Name.first_name, 
     :last_name => Faker::Name.last_name, 
+    :username => Faker::Internet.user_name,
     :age => "27", 
     :gender => "F", 
-    :about => Faker::Lorem.paragraphs)
+    :about => Faker::Lorem.paragraph)
+
 end
 
 Given(/^We are in the profile page$/) do
   #pending # express the regexp above with the code you wish you had
-  visit user_path
+  visit user_path(@user)
 end
 
 Then(/^We should see the user's first name$/) do

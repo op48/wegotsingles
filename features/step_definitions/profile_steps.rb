@@ -3,6 +3,7 @@ Given(/^a user exists$/) do
   @user = User.create!(:first_name => Faker::Name.first_name, 
     :last_name => Faker::Name.last_name, 
     :username => Faker::Internet.user_name,
+    :image_url => "http://thefuntimesguide.com/images/blogs/Ms_Green_MMs_on_Couch.jpg",
     :age => "27", 
     :gender => "F", 
     :about => Faker::Lorem.paragraph)
@@ -22,6 +23,11 @@ end
 Then(/^We should see the user's last name$/) do
   #pending # express the regexp above with the code you wish you had
   expect(page.has_content?(@user.last_name)).to be true
+end
+
+Then(/^we should see a profile picture$/) do
+  #pending # express the regexp above with the code you wish you had
+  expect(page.has_css?("img[src='#{@user.image_url}']")).to be true
 end
 
 Then(/^We should see the user's username$/) do

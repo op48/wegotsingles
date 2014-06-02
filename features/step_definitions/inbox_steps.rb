@@ -10,7 +10,6 @@ Given(/^we recieve a message$/) do
 end
 
 Then(/^we should be able to view the messages in our inbox$/) do
-	save_and_open_page
   expect(page.has_content?(@message.subject)).to be true
   expect(page.has_content?(@message.sender_username)).to be true
 end

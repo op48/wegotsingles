@@ -1,18 +1,16 @@
-Given(/^that I am on the signup page$/) do
+Given(/^that a user is on the signup page$/) do
   visit new_user_registration_path
 end
 
-When(/^I complete the form with valid information$/) do
+When(/^a "(.*?)" completes the form with valid information$/) do |user|
   fill_in 'Email', :with => 'test@test.org'
   fill_in 'Password', :with => 'password'
   fill_in 'Password confirmation', :with => 'password'
-  save_and_open_page
-  choose('Male')
+  choose(user)
   click_button('Sign up')
 end
 
-Then(/^an account should be created$/) do
+Then(/^a "(.*?)" account should be created$/) do |user|
   page.should have_content('Welcome! You have signed up successfully.')
-  Male.count.should eq(1)
+  user.constantize.count.should eq(1)
 end
-

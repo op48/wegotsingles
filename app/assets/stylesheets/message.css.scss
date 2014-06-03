@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+	font-family: code_boldregular;
+}
 .messages{
 	display: inline-block;
 	padding: 10px;
@@ -21,9 +24,24 @@
 	display: inline-block;
 	font-size: 1.5em;
 }
+
 #one_mess{
 	border-bottom: 2px solid black;
 }
+
 h2 {
 	font-size: 2em;
+}
+
+/* -------------  SHOW INDIVIDUAL MESSAGE ----------------*/
+.message-wrapper p {
+	display: block;
+	margin: 20px;
+}
+
+#message-subject {
+	margin: 20px;
+	display: inline-block;
+	border-bottom: 2px solid rgb(171,30,38);
+	font-size: 1.5em;
 }

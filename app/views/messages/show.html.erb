@@ -1,6 +1,7 @@
+<h2 id="message-subject"><%= @message.subject %></h2>
+
 <div class="message-wrapper">
-  <%= @message.subject %>
-  <%= @message.body %>
-  <%= @message.sender_username %>
-  <%= @message.created_at %>
+  <p>From: <%= @message.sender_username %><p>
+  <p><%= @message.body %></p>
+  <p><%= @message.created_at %></p>
 </div>

@@ -1,9 +1,12 @@
-<div class = "messages">
+<h1>Inbox</h1>
+
+<div class="messages">
 <% @user_messages.each do |m| %>
-<div id = "one_mess">
-<p id = "subject"> <%= m.subject %> </p>
-<p id = "user"> <%= m.sender_username %> <p>
-<p><%= link_to 'show', message_path(m) %></p>  
-</div>
+	<div id="one_mess">
+	<p id="subject"> <%= m.subject %> </p>
+	<p id="user"> <%= m.sender_username %> <p>
+	<p><%= link_to 'show', message_path(m) %></p>
+	<p><%= link_to 'delete', message_path(m) %></p>   
+	</div>
 <%end%>
 </div>

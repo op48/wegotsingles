@@ -12,7 +12,7 @@ gem 'thin'
 gem 'devise'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2'
   gem 'shoulda-matchers'
   gem 'faker'
   gem 'pry-byebug'

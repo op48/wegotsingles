@@ -9,6 +9,7 @@ Feature: Messages
 		And we click on "inbox"
 		Then we should be able to view the messages in our inbox
   
+  @wip
   Scenario: A user views a message
     Given that we are on the message index page
       And we select "show"

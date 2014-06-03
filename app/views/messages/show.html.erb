@@ -1,1 +1,6 @@
-<%= @user_messages %>
+<div class="message-wrapper">
+  <%= @message.subject %>
+  <%= @message.body %>
+  <%= @message.sender_username %>
+  <%= @message.created_at %>
+</div>

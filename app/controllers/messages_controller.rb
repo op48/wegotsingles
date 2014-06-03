@@ -5,6 +5,8 @@ class MessagesController < ApplicationController
 	def index
 		@user_messages = current_user.messages 
 		@message = Message.new
+    #binding.pry
+    @pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
 	end
 
   def show

@@ -4,11 +4,7 @@ Feature: Messages
   Background: 
     Given we have a logged-in user called "joe"
     And "joe" has messages in his inbox 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> c6ba7bb29ce88899682a0dac7be62e9b8f73bf05
+    
 	Scenario: A user views their inbox
 		Given that we are on the homepage
 		And we click on "inbox"

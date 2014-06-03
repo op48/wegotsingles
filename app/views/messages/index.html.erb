@@ -1,5 +1,6 @@
 <h2>Inbox</h2>
 
+<%= link_to 'outbox', outbox_messages_path %>
 <div class="messages">
 <% @pages.each do |m| %>
 	<div id="one_mess">

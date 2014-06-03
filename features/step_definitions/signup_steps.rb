@@ -6,6 +6,16 @@ When(/^a "(.*?)" completes the form with valid information$/) do |user|
   fill_in 'Email', :with => 'test@test.org'
   fill_in 'Password', :with => 'password'
   fill_in 'Password confirmation', :with => 'password'
+  within "#user_birthday_3i" do
+    select '1' 
+  end
+  within "#user_birthday_2i" do
+    select 'June'
+  end
+  within "#user_birthday_1i" do
+    select '1970'
+  end
+  save_and_open_page
   within("#gender") do
   choose(user)
   end
@@ -26,4 +36,8 @@ end
 
 Then(/^their preference should be recorded$/) do
   User.first.preference == @pref 
+end
+
+Then(/^their birthday should be recorded$/) do
+  User.first.birthday == "Mon, 01 Jun 1970"
 end

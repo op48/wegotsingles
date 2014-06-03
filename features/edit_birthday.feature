@@ -3,7 +3,7 @@ Feature: Edit Birthday
   Background:
     Given we have a logged-in user called "joe"
       And is on the edit registration page
- @wip
+
   Scenario: a user edits thier date of birth
     When a user enters a new date of birth
       And submits the form

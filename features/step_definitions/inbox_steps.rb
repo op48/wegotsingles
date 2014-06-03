@@ -1,5 +1,9 @@
-Given(/^we have a user called "(.*?)"$/) do |user|
-  @user = User.create!
+Given(/^we have a logged\-in user called "(.*?)"$/) do |name|
+  @user = User.create!(:first_name => name, :email => "joe@example.org", :password => "password")
+  visit '/users/sign_in'
+  fill_in "Email", :with => "joe@example.org"
+  fill_in "Password", :with => "password"
+  click_button "Sign in"
 end
 
 Given(/^"(.*?)" has messages in his inbox$/) do |user|

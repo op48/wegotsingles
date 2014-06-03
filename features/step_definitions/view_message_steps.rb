@@ -13,6 +13,5 @@ Given(/^the user has a message from "(.*?)"$/) do |user|
 end
 
 Then(/^we should see that message$/) do
-  save_and_open_page
   expect(page.has_content?(@message.body)).to be true
 end

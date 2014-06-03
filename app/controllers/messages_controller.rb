@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-	
+	before_action :authenticate_user!
 	def index
 		@user_messages = current_user.messages 
 		@message = Message.new
@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
 
   def destroy
   	@message = Message.find(params[:id])
-  	@message.destroy
+  	@message.destroy!
   	redirect_to messages_path
   end
 end

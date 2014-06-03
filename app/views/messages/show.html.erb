@@ -7,4 +7,5 @@
   <%= @message.created_at %>
 </div>
 
-<%= link_to 'Delete', messages_path(@message)%>
+<%= link_to 'Delete', message_path(@message), :method => :delete, data: {confirm: "Are you sure?"}%>
+<%= link_to 'Inbox', messages_path %>

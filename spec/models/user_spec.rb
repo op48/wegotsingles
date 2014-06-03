@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it {should have_many(:user_ethnicities)}
+  it {should have_many(:ethnicities).through(:user_ethnicities)}
 end

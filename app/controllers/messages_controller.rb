@@ -11,7 +11,6 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-  	binding.pry
   	@message = Message.find(params[:id])
   	@message.destroy
   	redirect_to messages_path

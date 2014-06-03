@@ -1,5 +1,5 @@
 Feature: Profile page
-@wip
+
 Scenario: A visitor sees a profile 
  Given a user exists
    And We are in the profile page

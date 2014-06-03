@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603084400) do
+ActiveRecord::Schema.define(version: 20140603100012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20140603084400) do
     t.string   "name"
   end
 
+  create_table "messages", force: true do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.string   "sender_username"
+    t.integer  "sender_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_ethnicities", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -30,27 +40,29 @@ ActiveRecord::Schema.define(version: 20140603084400) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                                          default: "", null: false
+    t.string   "encrypted_password",                             default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                                  default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "username"
+    t.string   "type"
     t.integer  "age"
     t.string   "gender"
     t.text     "about"
-    t.string   "username"
     t.string   "image_url"
     t.string   "preference"
+    t.decimal  "height",                 precision: 5, scale: 2
+    t.date     "birthday"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

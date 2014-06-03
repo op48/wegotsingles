@@ -12,6 +12,9 @@
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
+  <div><%= f.label :birthday %><br />
+    <%= date_select(:user, :birthday, order: [ :day, :month, :year ]) %></div>
+
   <p>"Which gender are you?"</p>
   <div id="gender">
   <div><%= f.radio_button :type, "Male" %><br />

@@ -1,39 +1,45 @@
-<h2>Sign up</h2>
+<body>
+  <h2>Sign up</h2>
+  <div class="form">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <div><%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+    <div><%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "off" %></div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <div><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <div><%= f.label :username %><br />
+      <%= f.text_field :username  %></div>
 
-  <div><%= f.label :birthday %><br />
-    <%= f.date_select(:birthday, { day: :default, month: :default, start_year: (120.years.ago).year, end_year: (18.years.ago).year }) %></div>
+    <div><%= f.label :birthday %><br />
+      <%= f.date_select(:birthday, { day: :default, month: :default, start_year: (120.years.ago).year, end_year: (18.years.ago).year }) %></div>
 
-  <p>"Which gender are you?"</p>
-  <div id="gender">
-  <div><%= f.radio_button :type, "Male" %><br />
-    <%= f.label :type_male, "Male" %></div>
+    <p>"Which gender are you?"</p>
+    <div id="gender">
+      <div><%= f.radio_button :type, "Male" %><br />
+        <%= f.label :type_male, "Male" %></div>
 
-  <div><%= f.radio_button :type, "Female" %><br />
-    <%= f.label :type_female, "Female" %></div>
+      <div><%= f.radio_button :type, "Female" %><br />
+        <%= f.label :type_female, "Female" %></div>
+    </div>
+
+    <p>"Which gender are you interested in?"</p>
+    <div id="preference">
+      <div id="preference-female"><%= f.radio_button :preference, "Female" %><br />
+        <%= f.label :preference_female, "Female" %></div>
+
+      <div id="preference-male"><%= f.radio_button :preference, "Male" %><br />
+        <%= f.label :preference_male, "Male" %></div>
+    </div>
+
+    <div><%= f.submit "Sign up" %></div>
+  <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <p>"Which gender are you interested in?"</p>
-  <div id="preference">
-  <div id="preference-female"><%= f.radio_button :preference, "Female" %><br />
-    <%= f.label :preference_female, "Female" %></div>
-  
-  <div id="preference-male"><%= f.radio_button :preference, "Male" %><br />
-    <%= f.label :preference_male, "Male" %></div>
-  </div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</body>

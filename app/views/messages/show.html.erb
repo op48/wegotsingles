@@ -6,3 +6,5 @@
   <%= @message.sender_username %>
   <%= @message.created_at %>
 </div>
+
+<%= link_to 'Delete', messages_path(@message)%>

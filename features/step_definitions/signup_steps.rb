@@ -15,7 +15,6 @@ When(/^a "(.*?)" completes the form with valid information$/) do |user|
   within "#user_birthday_1i" do
     select '1970'
   end
-  save_and_open_page
   within("#gender") do
   choose(user)
   end

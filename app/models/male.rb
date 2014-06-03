@@ -1,0 +1,3 @@
+class Male < User
+
+end

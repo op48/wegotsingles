@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
 joe = User.find_or_create_by!(:id => "1") do |user|
   user.email = "joe@email.com" 
   user.password = "password"
@@ -24,8 +25,8 @@ User.find_or_create_by!(:id => "2") do |user|
   user.preference = "male"
 end
 
-
-10.times do |i|
+joe = User.first
+100.times do |i|
 	@mess = Message.create(subject: "test#{i}", sender_username: "admin")
 	joe.messages << @mess
 end

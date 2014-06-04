@@ -10,6 +10,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
 gem 'thin'
 gem 'devise'
+gem 'will_paginate', '~> 3.0'
 
 group :development, :test do
 

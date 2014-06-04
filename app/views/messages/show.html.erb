@@ -9,7 +9,7 @@
 
 <%= link_to 'Delete', message_path(@message), :method => :delete, data: {confirm: "Are you sure?"}%>
 <%= link_to 'Inbox', messages_path %>
-<%= link_to 'Reply', message_path %>
+<%= link_to 'Reply', message_path, id: "reply-button" %>
 
 <form id="reply-form">
   <p>Reply to: <%=  @message.sender_username %></p>

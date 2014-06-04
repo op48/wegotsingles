@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-joe = User.create!
-10.times do |i|
+joe = User.first
+100.times do |i|
 	@mess = Message.create(subject: "test#{i}", sender_username: "admin")
 	joe.messages << @mess
 end

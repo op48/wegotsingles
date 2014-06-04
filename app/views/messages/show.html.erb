@@ -14,5 +14,5 @@
 <form id="reply-form">
   <p>Reply to: <%=  @message.sender_username %></p>
   <textarea cols="50", rows="20", placeholder="Write your reply here...", name="reply-textarea"></textarea>
-  <%= link_to 'send', message_path %> 
+  <%= link_to 'send', messages_path, :method => :post %> 
 </form>

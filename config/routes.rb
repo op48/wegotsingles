@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'pages#home'
 
-  resource :user, :only => [:show] do
+  resource :user, :only => [:show, :edit, :update] do
     member do
       get 'me'
     end

@@ -11,5 +11,27 @@ require 'spec_helper'
 #   end
 # end
 describe MessageHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "status_read" do
+
+    context "read" do
+      before do
+        @message = Message.create!(:read => true)
+      end
+
+      it "should return read" do
+        expect(status_read(@message)).to eq("read")
+      end
+    end
+
+    context "unread" do
+      before do
+        @message = Message.create!(:read => false)
+      end
+
+      it "should return unread" do
+        expect(status_read(@message)).to eq("unread") 
+      end
+    end
+  end
 end

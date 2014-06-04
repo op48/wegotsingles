@@ -11,7 +11,9 @@ Given(/^a user exists$/) do
     :email => @email,
     :password => "password",
     :about => Faker::Lorem.paragraph,
-    :height => 167.00)
+    :height => 167.00,
+    :preference => "male"
+    )
 end
 
 Given(/^We are in the profile page$/) do
@@ -57,4 +59,9 @@ end
 Then(/^We should see the user's height$/) do
   #pending # express the regexp above with the code you wish you had
   expect(page.has_content?(@user.height)).to be true
+end
+
+Then(/^We should see the user's preference$/) do
+  #pending # express the regexp above with the code you wish you had
+  expect(page.has_content?(@user.preference)).to be true
 end

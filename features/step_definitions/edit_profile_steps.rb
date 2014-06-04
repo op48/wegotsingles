@@ -1,7 +1,6 @@
 Given(/^a user signs in$/) do
   #pending # express the regexp above with the code you wish you had
   visit new_user_session_path
-  @user = User.create!(:email => Faker::Internet.email, :password => "password")
   fill_in("Email", :with => @user.email)
   fill_in("Password", :with => @user.password)
   click_button("Sign in")

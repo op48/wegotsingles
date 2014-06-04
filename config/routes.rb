@@ -2,8 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   root 'pages#home'
 
-  resource :user
+  resource :user, :only => [:show] do
+    member do
+      get 'me'
+    end
+  end
+
   resources :users
   resources :messages
+
   
 end

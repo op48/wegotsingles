@@ -22,6 +22,7 @@ User.find_or_create_by!(:id => "2") do |user|
   user.birthday = "20 Mar 1978"
   user.gender = "female" 
   user.preference = "male"
+
 end
 
 

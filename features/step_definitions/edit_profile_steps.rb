@@ -4,8 +4,7 @@ Given(/^a user signs in$/) do
   @user = User.create!(:email => Faker::Internet.email, :password => "password")
   fill_in("Email", :with => @user.email)
   fill_in("Password", :with => @user.password)
-  click_on("Sign in")
-  #save_and_open_page
+  click_button("Sign in")
 end
 
 Given(/^the user is on the edit profile page$/) do

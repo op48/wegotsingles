@@ -1,5 +1,5 @@
 Feature: Edit Profile
-
+@wip
 Scenario: A user edits their profile
   Given a user signs in
     And the user is on the edit profile page

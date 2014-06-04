@@ -26,4 +26,5 @@ Feature: Messages
       When we click on the reply option
         Then we should be able to type our reply on the same page underneath the original message 
       When we click on "send" button below the message
-        Then our message is sent to the sender of the original message 
+      Given that we have written "cucumber test message" in the reply message
+        Then our message containing "cucumber test message" is sent to the sender of the original message

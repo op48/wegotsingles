@@ -12,7 +12,7 @@
 <%= link_to 'Reply', message_path %>
 
 <form id="reply-form">
-  <textarea cols="50", rows="20", placeholder="Write your reply here...">
-  </textarea>
-  <%= link_to 'Send', message_path %> 
+  <p>Reply to: <%=  @message.sender_username %></p>
+  <textarea cols="50", rows="20", placeholder="Write your reply here...", name="reply-textarea"></textarea>
+  <%= link_to 'send', message_path %> 
 </form>

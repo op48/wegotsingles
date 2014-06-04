@@ -6,11 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-joe = User.create!
+joe = User.create!(:email => "joe@email.com", :password => "password", :username => "joey88", :birthday => "16 Jun 1979", :gender => "male", :preference => "female")
+
+
+
 10.times do |i|
 	@mess = Message.create(subject: "test#{i}", sender_username: "admin")
 	joe.messages << @mess
 end
+
 
 
 

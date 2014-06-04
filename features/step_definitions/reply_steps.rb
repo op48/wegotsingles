@@ -23,8 +23,9 @@ Given(/^that we have written "(.*?)" in the reply message$/) do |string|
 end
 
 Then(/^our message containing "(.*?)" is sent to the sender of the original message$/) do |string|
-  @joe_bloggs = User.create!(:username => "Joe Bloggs", :email => "joe@example.org", :password => "password") 
+  @joe_bloggs = User.create!(:username => "Joe Bloggs", :email => "joebloggs@example.org", :password => "password") 
   @joe_bloggs.messages << @reply_message
-  visit messages_path(@reply_message.reload)
+  visit message_path(@reply_message.reload)
+  save_and_open_page
   expect(page.has_content?(string)).to be true
 end

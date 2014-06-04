@@ -16,7 +16,6 @@ Feature: Messages
     Given the user has a message from "Joe Bloggs" 
     Then we should see that message
 
-@wip
   Scenario: A user deletes a message
     Given that we are on the message index page
       And we select "delete" 

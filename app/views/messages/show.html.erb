@@ -9,3 +9,10 @@
 
 <%= link_to 'Delete', message_path(@message), :method => :delete, data: {confirm: "Are you sure?"}%>
 <%= link_to 'Inbox', messages_path %>
+<%= link_to 'Reply', message_path %>
+
+<form id="reply-form">
+  <textarea cols="50", rows="20", placeholder="Write your reply here...">
+  </textarea>
+  <%= link_to 'Send', message_path %> 
+</form>

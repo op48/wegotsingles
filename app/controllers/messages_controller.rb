@@ -13,8 +13,8 @@ class MessagesController < ApplicationController
   end
   def show
     @message = Message.find(params[:id]) 
+    @reply = Message.new(:receiver => @message.sender, :message_id => @message.id)
     @message.update( read: true )
-    @reply = Message.new(:receiver => @message.sender)
   end
 
   def destroy
@@ -24,14 +24,20 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @reply_message = Message.new(message_params)
-    @reply_message.sender = current_user
-    @reply_message.save!
-    redirect_to messages_path
+    @reply = Message.new(message_params)
+    @reply.sender = current_user
+    if @reply.save
+      flash[:notice] = "Your reply has been sent"
+      redirect_to messages_path
+    else
+      @message = Message.find(@reply.message_id)
+      render :show
+    end
   end
 
   private
   def message_params
-    params.require(:reply).permit(:recipient_id, :body)
+    params.require(:reply).permit(:recipient_id, :body, :message_id)
   end
+
 end

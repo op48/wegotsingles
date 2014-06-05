@@ -14,4 +14,12 @@ end
 
 
 
-
+Ethnicity.find_or_create_by(:name => "Asian")
+Ethnicity.find_or_create_by(:name => "Middle Eastern")
+Ethnicity.find_or_create_by(:name => "Black")
+Ethnicity.find_or_create_by(:name => "Native American")
+Ethnicity.find_or_create_by(:name => "Indian")
+Ethnicity.find_or_create_by(:name => "Pacific Islander")
+Ethnicity.find_or_create_by(:name => "Hispanic")
+Ethnicity.find_or_create_by(:name => "White")
+Ethnicity.find_or_create_by(:name => "Other")

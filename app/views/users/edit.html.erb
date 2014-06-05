@@ -1,6 +1,6 @@
 <h2>Edit Profile Page</h2>
 
-<%= form_for @user, url: {action: "update"} do |f| %>
+<%= form_for @user, as: :user, url: {action: "update"} do |f| %>
   
   <%= field_set_tag do %>
     <%= f.label :first_name %> 
@@ -46,6 +46,13 @@
     <%= f.label :height %> 
     <%= f.text_field :height %>
   <% end %> 
+
+  <div id ="ethnicities">
+    <h4>Ethnicities</h4>
+    <%= f.collection_check_boxes :ethnicity_ids, 
+    @ethnicities, :id, :name %>
+  </div>
+
 
   <%= submit_tag "Update" %> 
   

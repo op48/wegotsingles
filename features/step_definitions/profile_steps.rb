@@ -3,6 +3,8 @@ Given(/^a user exists$/) do
   @user = User.create!(:first_name => Faker::Name.first_name, 
     :last_name => Faker::Name.last_name, 
     :username => Faker::Internet.user_name,
+    :email => Faker::Internet.email,
+    :password => Faker::Internet.password,
     :image_url => "http://thefuntimesguide.com/images/blogs/Ms_Green_MMs_on_Couch.jpg",
     :age => "27", 
     :gender => "F", 

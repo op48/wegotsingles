@@ -8,6 +8,9 @@ class MessagesController < ApplicationController
     @pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
 	end
 
+  def outbox
+    
+  end
   def show
     @message = Message.find(params[:id]) 
     @message.update( read: true )

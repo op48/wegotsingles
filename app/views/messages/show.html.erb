@@ -11,8 +11,8 @@
 <%= link_to 'Inbox', messages_path %>
 <%= link_to 'Reply', message_path, id: "reply-button" %>
 
-<form id="reply-form">
-  <p>Reply to: <%=  @message.sender_username %></p>
-  <textarea cols="50", rows="20", placeholder="Write your reply here...", name="reply-textarea"></textarea>
-  <%= link_to 'send', messages_path, :method => :post %> 
-</form>
+<%= form_for :message, :method => :post, html: { id: "reply-form" } do |m| %>
+  Recipient's name: <%= m.text_field :recipient_username %><br />
+  <%= m.text_area(:body, cols: 50, rows: 20, placeholder: 'Write your reply here...', name: 'reply-textarea') %><br />
+  <%= m.submit %>
+<% end %>

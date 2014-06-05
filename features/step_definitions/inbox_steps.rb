@@ -1,5 +1,5 @@
 Given(/^we have a logged\-in user called "(.*?)"$/) do |name|
-  @user = User.create!(:first_name => name, :email => "joe@example.org", :password => "password")
+  @user = User.create!(:first_name => name, :email => "joe@example.org", :password => "password", :username => "joe", :preference => "Female")
   visit '/users/sign_in'
   fill_in "Email", :with => "joe@example.org"
   fill_in "Password", :with => "password"

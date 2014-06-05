@@ -3,12 +3,14 @@
 <%= link_to 'outbox', outbox_messages_path %>
 <div class="messages">
 <% @pages.each do |m| %>
-	<div id="one_mess">
-	<p id="subject"> <%= m.subject %> </p>
-	<p id="user"> <%= m.sender_username %> <p>
-	<p><%= link_to 'show', message_path(m) %></p>
-	<p><%= link_to 'delete', message_path(m), :method => :delete, data: {confirm: "Are you sure?"} %></p>   
-	</div>
+  <div id="<%= status_read(m) %>">
+    <div id="one_mess">
+      <p id="subject"> <%= m.subject %> </p>
+      <p id="user"> <%= m.sender_username %> <p>
+      <p><%= link_to 'show', message_path(m) %></p>
+      <p><%= link_to 'delete', message_path(m), :method => :delete, data: {confirm: "Are you sure?"} %></p>   
+    </div>
+  </div>
 <%end%>
-<%= will_paginate @pages %>
+  <%= will_paginate @pages %>
 </div>

@@ -8,7 +8,7 @@ end
 
 Given(/^the user has a message from "(.*?)"$/) do |user|
   @message = Message.new(:subject => "Test Subject", :sender_username => "Joe Bloggs", :body => "This is a message from Joe Bloggs")
-  joe = User.create!(:email => "joe@example.com", :password => "password", :username => "joe-b")
+  joe = User.create!(:email => "joe@example.com", :password => "password", :username => "joe-b", :preference => "Male")
   joe.messages << @message
 end
 

@@ -5,6 +5,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def me
+    @user = current_user
+    render :show
+  end
+
   def edit
     @user = current_user
     @ethnicities = Ethnicity.all
@@ -13,7 +18,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(allowed_params)
-    redirect_to edit_user_path  
+    redirect_to me_user_path
   end
 
   private

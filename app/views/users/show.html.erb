@@ -1,13 +1,14 @@
 <div class="profile-page">
-
 <h3><%= @user.first_name %> <%= @user.last_name %></h3>
 
-<img class="profile-pic" src="http://thefuntimesguide.com/images/blogs/Ms_Green_MMs_on_Couch.jpg"/>
+<img class="profile-pic" src=<%= @user.image_url %> />
 
 <ul>
   <li>Username: <%= @user.username %></li>
   <li>Age: <%= @user.age %></li>
   <li>Gender: <%= @user.gender %></li>
+  <li>Height: <%= @user.height %> cm</li>
+  <li>Preference: <%= @user.preference %> cm</li>
 </ul>
 
 <p><%= @user.about %></p>

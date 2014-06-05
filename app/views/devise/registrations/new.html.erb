@@ -17,7 +17,7 @@
       <%= f.text_field :username  %></div>
 
     <div><%= f.label :birthday %><br />
-      <%= f.date_select(:birthday, { day: :default, month: :default, start_year: (120.years.ago).year, end_year: (18.years.ago).year }) %></div>
+      <%= f.date_select(:birthday, { start_year: (120.years.ago).year, end_year: (18.years.ago).year }) %></div>
 
     <p>"Which gender are you?"</p>
     <div id="gender">

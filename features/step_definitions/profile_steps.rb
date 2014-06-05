@@ -1,5 +1,7 @@
 Given(/^a user exists$/) do
   #pending # express the regexp above with the code you wish you had
+  @email = Faker::Internet.email  
+
   @user = User.create!(:first_name => Faker::Name.first_name, 
     :last_name => Faker::Name.last_name, 
     :username => Faker::Internet.user_name,
@@ -7,9 +9,13 @@ Given(/^a user exists$/) do
     :password => Faker::Internet.password,
     :image_url => "http://thefuntimesguide.com/images/blogs/Ms_Green_MMs_on_Couch.jpg",
     :age => "27", 
-    :gender => "F", 
-    :about => Faker::Lorem.paragraph)
-
+    :gender => "F",
+    :email => @email,
+    :password => "password",
+    :about => Faker::Lorem.paragraph,
+    :height => 167.00,
+    :preference => "male"
+    )
 end
 
 Given(/^We are in the profile page$/) do
@@ -50,4 +56,14 @@ end
 Then(/^We should see the user's about$/) do
   #pending # express the regexp above with the code you wish you had
   expect(page.has_content?(@user.about)).to be true
+end
+
+Then(/^We should see the user's height$/) do
+  #pending # express the regexp above with the code you wish you had
+  expect(page.has_content?(@user.height)).to be true
+end
+
+Then(/^We should see the user's preference$/) do
+  #pending # express the regexp above with the code you wish you had
+  expect(page.has_content?(@user.preference)).to be true
 end

@@ -3,6 +3,7 @@ Given(/^that a user is on the signup page$/) do
 end
 
 When(/^a "(.*?)" completes the form with valid information$/) do |user|
+  #binding.pry
   fill_in 'Email', :with => 'test@test.org'
   fill_in 'Password', :with => 'password'
   fill_in 'Password confirmation', :with => 'password'

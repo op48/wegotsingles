@@ -7,7 +7,7 @@ Given(/^a user exists$/) do
     :username => Faker::Internet.user_name,
     :image_url => "http://thefuntimesguide.com/images/blogs/Ms_Green_MMs_on_Couch.jpg",
     :age => "27", 
-    :gender => "F",
+    :type => "Female",
     :email => @email,
     :password => "password",
     :about => Faker::Lorem.paragraph,
@@ -46,9 +46,9 @@ Then(/^We should see the user's age$/) do
   expect(page.has_content?(@user.age)).to be true
 end
 
-Then(/^We should see the user's gender$/) do
+Then(/^We should see the user's type$/) do
   #pending # express the regexp above with the code you wish you had
-  expect(page.has_content?(@user.gender)).to be true
+  expect(page.has_content?(@user.type)).to be true
 end
 
 Then(/^We should see the user's about$/) do

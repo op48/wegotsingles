@@ -21,4 +21,10 @@ class MessagesController < ApplicationController
   	@message.destroy!
   	redirect_to messages_path
   end
+
+  def create
+    binding.pry
+    # @reply_message = Message.create!( :subject => , :sender_username => , :body => )
+
+  end
 end

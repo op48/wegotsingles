@@ -1,5 +1,4 @@
 Feature: Messages
-  
 
   Background: 
     Given we have a logged-in user called "joe"
@@ -21,9 +20,17 @@ Feature: Messages
       And we select "delete" 
     Then that message should be deleted
 
-@wip
+  Scenario: A user replies to a message
+    Given that we are on the show message page
+      When we click on the reply option
+        Then we should be able to type our reply on the same page underneath the original message 
+      When we click on "send" button below the message
+      Given that we have written "cucumber test message" in the reply message
+        Then our message containing "cucumber test message" is sent to the sender of the original message
+
   Scenario: A user sees their outbox
     Given that we are on the inbox page
       And we select "outbox"
       And there are messages in his outbox 
     Then we should view the sent messages
+

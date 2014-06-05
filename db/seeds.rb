@@ -12,6 +12,12 @@ joe = User.first
 	joe.messages << @mess
 end
 
+100.times do |i|
+	@mess = Message.create(subject: "test#{i}", recipient_username: "Bonnie")
+	joe.messages << @mess
+end
+
+
 
 
 

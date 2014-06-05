@@ -9,10 +9,14 @@
 
 <%= link_to 'Delete', message_path(@message), :method => :delete, data: {confirm: "Are you sure?"}%>
 <%= link_to 'Inbox', messages_path %>
-<%= link_to 'Reply', message_path, id: "reply-button" %>
+<%= link_to 'Reply', message_path(@message), id: "reply-button" %>
+
+<%= @reply.errors.full_messages %>
 
 <%= form_for :reply, url: messages_path, :method => :post, html: { id: "reply-form" } do |m| %>
+
   <%= m.hidden_field :recipient_id %><br />
+  <%= m.hidden_field :message_id %><br />
   <%= m.text_area(:body, cols: 50, rows: 20, placeholder: 'Write your reply here...') %><br />
   <%= m.submit 'send' %>
 <% end %>

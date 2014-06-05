@@ -11,20 +11,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def imperial_height=(imp_height) #stored as feet and inches(setting)
-    feet,inches = imp_height.split("' ").map{|h| h.to_i} 
+    feet,inches = imp_height.split("' ").map{ |h| h.to_i } 
     total_inches = (feet * 12) + inches
     self.height = total_inches * 2.54 #conversion of inch to cm
-    @metric_height = self.height
-
+    @metric_height = self.height#
   end
 
-  def imperial_height
+  def imperial_height # stored as cm convert to feet and inches
     @metric_height = self.height
     inches = @metric_height * 0.393700787
-    feet = inches/12
-    round_feet = feet.round(1)
-    @feet_inches = round_feet.to_s.gsub(".", "' ")
-    @feet_inches
+    feet_inches_array = (inches.divmod 12).map{ |h| h.round }
+    @feet_inches = feet_inches_array.join("' ")
   end
 
 end

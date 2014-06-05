@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 joe = User.first
+
 20.times do |i|
 	@mess = Message.create(subject: "test#{i}", sender: joe, receiver: jenny88)
 	joe.messages << @mess

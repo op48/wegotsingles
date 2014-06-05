@@ -4,13 +4,14 @@ class MessagesController < ApplicationController
 	
 	def index
 		@user_messages = current_user.messages 
-		@message = Message.new
-    @pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+		@pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
 	end
 
   def outbox
-    
+    @user_messages = current_user.messages 
+    @pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
+  
   def show
     @message = Message.find(params[:id]) 
     @reply = Message.new(:receiver => @message.sender, :message_id => @message.id)

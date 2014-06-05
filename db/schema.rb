@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604123643) do
+ActiveRecord::Schema.define(version: 20140605135034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ethnicities", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
 
   create_table "messages", force: true do |t|
     t.string   "subject"
@@ -25,6 +31,13 @@ ActiveRecord::Schema.define(version: 20140604123643) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "read",            default: false
+  end
+
+  create_table "user_ethnicities", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "ethnicity_id"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -45,7 +58,6 @@ ActiveRecord::Schema.define(version: 20140604123643) do
     t.string   "username"
     t.string   "type"
     t.integer  "age"
-    t.string   "gender"
     t.text     "about"
     t.string   "image_url"
     t.string   "preference"

@@ -1,6 +1,6 @@
 <h2>Edit Profile Page</h2>
 
-<%= form_for @user, url: {action: "update"} do |f| %>
+<%= form_for :user, url: update_profile_user_path, :method => :put do |f| %>
   
   <%= field_set_tag do %>
     <%= f.label :first_name %> 
@@ -28,8 +28,8 @@
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :gender %> 
-    <%= f.text_field :gender %>
+    <%= f.label :type %> 
+    <%= f.text_field :type %>
   <% end %>
 
   <%= field_set_tag do %>
@@ -45,8 +45,17 @@
   <%= field_set_tag do %>
     <%= f.label :height %> 
     <%= f.text_field :height %> cm
-  <% end %> 
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :imperial_height %> 
+    <%= f.text_field :imperial_height %> ft
+  <% end %>
 
   <%= submit_tag "Update" %> 
   
 <% end %>
+
+
+
+  

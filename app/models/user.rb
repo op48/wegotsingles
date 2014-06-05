@@ -9,4 +9,15 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  
+
+  def imperial_height=(imp_height) #stored as feet and inches
+    feet,inches = imp_height.split("' ").map{|h| h.to_i} 
+    total_inches = (feet * 12) + inches
+    self.height = total_inches * 2.54 #conversion of inch to cm
+    return self.height
+
+  end
+
 end

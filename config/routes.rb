@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :users, :only => [:show]
-  resource :user, :only => [:edit, :update] do
+  resource :user, :only => [] do
     member do
-      get 'me'
+      put :update, :as => :update_profile
+      get :edit
+      get :me
     end
   end
 

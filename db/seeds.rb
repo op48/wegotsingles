@@ -8,13 +8,13 @@
 
 joe = User.first
 100.times do |i|
-	@mess = Message.create(subject: "test#{i}", sender_username: "admin")
-	joe.messages << @mess
+	@recieve = Message.create(subject: "test#{i}", sender_username: "admin")
+	joe.messages << @recieve
 end
 
 100.times do |i|
-	@mess = Message.create(subject: "test#{i}", recipient_username: "Bonnie")
-	joe.messages << @mess
+	@sent = Message.create(subject: "test#{i}", recipient_username: "Bonnie")
+	joe.messages << @sent
 end
 
 

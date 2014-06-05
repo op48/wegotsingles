@@ -4,12 +4,12 @@ class MessagesController < ApplicationController
 	
 	def index
 		@user_messages = current_user.messages 
-		@message = Message.new
-    @pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+		@pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
 	end
 
   def outbox
-    
+    @user_messages = current_user.messages 
+    @pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
   def show
     @message = Message.find(params[:id]) 
@@ -23,8 +23,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    binding.pry
-    # @reply_message = Message.create!( :subject => , :sender_username => , :body => )
-
+  
   end
 end

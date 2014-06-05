@@ -27,7 +27,7 @@ Feature: Messages
       When we click on "send" button below the message
       Given that we have written "cucumber test message" in the reply message
         Then our message containing "cucumber test message" is sent to the sender of the original message
-
+@wip
   Scenario: A user sees their outbox
     Given that we are on the inbox page
       And we select "outbox"

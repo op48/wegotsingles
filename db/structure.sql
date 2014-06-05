@@ -30,6 +30,38 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+=======
+-- Name: ethnicities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE ethnicities (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    name character varying(255)
+);
+
+
+--
+-- Name: ethnicities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE ethnicities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ethnicities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE ethnicities_id_seq OWNED BY ethnicities.id;
+
+
+--
 -- Name: messages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -42,7 +74,9 @@ CREATE TABLE messages (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+
     message_id integer
+    read boolean DEFAULT false
 );
 
 
@@ -75,6 +109,38 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: user_ethnicities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE user_ethnicities (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    ethnicity_id integer,
+    user_id integer
+);
+
+
+--
+-- Name: user_ethnicities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_ethnicities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_ethnicities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_ethnicities_id_seq OWNED BY user_ethnicities.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -96,8 +162,16 @@ CREATE TABLE users (
     last_name character varying(255),
     username character varying(255),
     type character varying(255),
+
     preference character varying(255),
     birthday date
+    age integer,
+    gender character varying(255),
+    about text,
+    image_url character varying(255),
+    preference character varying(255),
+    birthday date,
+    height numeric(6,2)
 );
 
 
@@ -124,7 +198,21 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY ethnicities ALTER COLUMN id SET DEFAULT nextval('ethnicities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_ethnicities ALTER COLUMN id SET DEFAULT nextval('user_ethnicities_id_seq'::regclass);
 
 
 --
@@ -135,11 +223,29 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
+
+-- Name: ethnicities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY ethnicities
+    ADD CONSTRAINT ethnicities_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY messages
     ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+
+-- Name: user_ethnicities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY user_ethnicities
+    ADD CONSTRAINT user_ethnicities_pkey PRIMARY KEY (id);
 
 
 --
@@ -185,9 +291,37 @@ INSERT INTO schema_migrations (version) VALUES ('20140602135934');
 
 INSERT INTO schema_migrations (version) VALUES ('20140602141656');
 
+<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20140602160546');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603100012');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603165643');
+=======
+INSERT INTO schema_migrations (version) VALUES ('20140602142456');
+
+INSERT INTO schema_migrations (version) VALUES ('20140602160442');
+
+INSERT INTO schema_migrations (version) VALUES ('20140602160546');
+
+INSERT INTO schema_migrations (version) VALUES ('20140602164750');
+
+INSERT INTO schema_migrations (version) VALUES ('20140602164912');
+
+INSERT INTO schema_migrations (version) VALUES ('20140602172334');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603082720');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603084400');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603091958');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603100012');
+
+INSERT INTO schema_migrations (version) VALUES ('20140604093425');
+
+INSERT INTO schema_migrations (version) VALUES ('20140604121617');
+
+INSERT INTO schema_migrations (version) VALUES ('20140604123643');
+
 

@@ -1,0 +1,59 @@
+<h2>Edit Profile Page</h2>
+
+<%= form_for @user, as: :user, url: {action: "update"} do |f| %>
+  
+  <%= field_set_tag do %>
+    <%= f.label :first_name %> 
+    <%= f.text_field :first_name %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :last_name %> 
+    <%= f.text_field :last_name %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :username %> 
+    <%= f.text_field :username %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :age %> 
+    <%= f.text_field :age %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :image_url %> 
+    <%= f.text_field :image_url %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :gender %> 
+    <%= f.text_field :gender %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :preference %> 
+    <%= f.text_field :preference %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :about %> 
+    <%= f.text_field :about %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :height %> 
+    <%= f.text_field :height %> cm
+  <% end %> 
+
+  <div id ="ethnicities">
+    <h4>Ethnicities</h4>
+    <%= f.collection_check_boxes :ethnicity_ids, 
+    @ethnicities, :id, :name %>
+  </div>
+
+
+  <%= submit_tag "Update" %> 
+  
+<% end %>

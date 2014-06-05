@@ -1,9 +1,12 @@
-Given(/^a user has ethnicities$/) do
+Given(/^ethnicities exist$/) do
   @arabs = Ethnicity.create(:name => "Arabs")
   @bengalis = Ethnicity.create(:name => "Bengalis")
   @russians = Ethnicity.create(:name => "Russians")
   @japanese = Ethnicity.create(:name => "Japanese")
-  @user = User.create!(:email => Faker::Internet.email, :username => "test", :password => "password")
+end
+
+
+Given(/^a user has ethnicities$/) do
   @user.ethnicities(:ethnicity_ids => [1,2])
 end
 

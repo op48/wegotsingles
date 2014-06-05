@@ -30,7 +30,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
-<<<<<<< HEAD
 -- Name: ethnicities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -39,7 +38,29 @@ CREATE TABLE ethnicities (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     name character varying(255)
-=======
+);
+
+
+--
+-- Name: ethnicities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE ethnicities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ethnicities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE ethnicities_id_seq OWNED BY ethnicities.id;
+
+
+--
 -- Name: messages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -53,22 +74,14 @@ CREATE TABLE messages (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     read boolean DEFAULT false
->>>>>>> profile_page
 );
 
 
 --
-<<<<<<< HEAD
--- Name: ethnicities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE ethnicities_id_seq
-=======
 -- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE messages_id_seq
->>>>>>> profile_page
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -77,17 +90,10 @@ CREATE SEQUENCE messages_id_seq
 
 
 --
-<<<<<<< HEAD
--- Name: ethnicities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE ethnicities_id_seq OWNED BY ethnicities.id;
-=======
 -- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
->>>>>>> profile_page
 
 
 --
@@ -100,14 +106,15 @@ CREATE TABLE schema_migrations (
 
 
 --
-<<<<<<< HEAD
 -- Name: user_ethnicities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE user_ethnicities (
     id integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    ethnicity_id integer,
+    user_id integer
 );
 
 
@@ -131,24 +138,11 @@ ALTER SEQUENCE user_ethnicities_id_seq OWNED BY user_ethnicities.id;
 
 
 --
-=======
->>>>>>> profile_page
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE users (
     id integer NOT NULL,
-<<<<<<< HEAD
-    first_name character varying(255),
-    last_name character varying(255),
-    age integer,
-    gender character varying(255),
-    about text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    username character varying(255),
-    image_url character varying(255)
-=======
     email character varying(255) DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying(255),
@@ -172,7 +166,6 @@ CREATE TABLE users (
     preference character varying(255),
     birthday date,
     height numeric(6,2)
->>>>>>> profile_page
 );
 
 
@@ -199,18 +192,20 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-<<<<<<< HEAD
 ALTER TABLE ONLY ethnicities ALTER COLUMN id SET DEFAULT nextval('ethnicities_id_seq'::regclass);
-=======
-ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
->>>>>>> profile_page
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-<<<<<<< HEAD
+ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY user_ethnicities ALTER COLUMN id SET DEFAULT nextval('user_ethnicities_id_seq'::regclass);
 
 
@@ -230,29 +225,19 @@ ALTER TABLE ONLY ethnicities
 
 
 --
--- Name: user_ethnicities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY user_ethnicities
-    ADD CONSTRAINT user_ethnicities_pkey PRIMARY KEY (id);
-
-
---
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-=======
-ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
-
-
---
 -- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY messages
     ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_ethnicities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY user_ethnicities
+    ADD CONSTRAINT user_ethnicities_pkey PRIMARY KEY (id);
 
 
 --
@@ -275,7 +260,6 @@ CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
->>>>>>> profile_page
 
 
 --
@@ -291,19 +275,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 SET search_path TO "$user",public;
 
-<<<<<<< HEAD
-INSERT INTO schema_migrations (version) VALUES ('20140602142456');
-
-INSERT INTO schema_migrations (version) VALUES ('20140602150908');
-
-INSERT INTO schema_migrations (version) VALUES ('20140602160442');
-
-INSERT INTO schema_migrations (version) VALUES ('20140602164750');
-
-INSERT INTO schema_migrations (version) VALUES ('20140602164912');
-
-INSERT INTO schema_migrations (version) VALUES ('20140602172334');
-=======
 INSERT INTO schema_migrations (version) VALUES ('20140602135646');
 
 INSERT INTO schema_migrations (version) VALUES ('20140602135806');
@@ -318,6 +289,16 @@ INSERT INTO schema_migrations (version) VALUES ('20140602160442');
 
 INSERT INTO schema_migrations (version) VALUES ('20140602160546');
 
+INSERT INTO schema_migrations (version) VALUES ('20140602164750');
+
+INSERT INTO schema_migrations (version) VALUES ('20140602164912');
+
+INSERT INTO schema_migrations (version) VALUES ('20140602172334');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603082720');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603084400');
+
 INSERT INTO schema_migrations (version) VALUES ('20140603091958');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603100012');
@@ -327,5 +308,4 @@ INSERT INTO schema_migrations (version) VALUES ('20140604093425');
 INSERT INTO schema_migrations (version) VALUES ('20140604121617');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604123643');
->>>>>>> profile_page
 

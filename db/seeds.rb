@@ -7,13 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 joe = User.first
-100.times do |i|
-	@mess = Message.create(subject: "test#{i}", sender_username: "admin")
-	joe.messages << @mess
-end
-
-100.times do |i|
-	@mess = Message.create(subject: "test#{i}", recipient_username: "Bonnie")
+20.times do |i|
+	@mess = Message.create(subject: "test#{i}", sender: joe, receiver: jenny88)
 	joe.messages << @mess
 end
 

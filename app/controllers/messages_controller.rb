@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
   def show
     @message = Message.find(params[:id]) 
     @message.update( read: true )
+    @reply = Message.new(:receiver => @message.sender)
   end
 
   def destroy
@@ -23,8 +24,14 @@ class MessagesController < ApplicationController
   end
 
   def create
-    binding.pry
-    # @reply_message = Message.create!( :subject => , :sender_username => , :body => )
+    @reply_message = Message.new(message_params)
+    @reply_message.sender = current_user
+    @reply_message.save!
+    redirect_to messages_path
+  end
 
+  private
+  def message_params
+    params.require(:reply).permit(:recipient_id, :body)
   end
 end

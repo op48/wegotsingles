@@ -13,4 +13,6 @@ describe User do
   it { should have_many(:user_languages) }
   it { should have_many(:languages).through(:user_languages) }
 
+  it { should have_many(:user_horoscopes) }
+  it { should have_many(:horoscopes).through(:user_horoscopes) }
 end

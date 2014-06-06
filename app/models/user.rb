@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-	has_many :messages
+  has_many :incoming_messages, :class_name => "Message", :foreign_key => :message_id
+	has_many :outgoing_messages, :class_name => "Message", :foreign_key => :message_id
   validates_uniqueness_of :username
   validates_presence_of :username
   validates_presence_of :preference

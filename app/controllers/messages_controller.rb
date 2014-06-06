@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
 	end
 
   def outbox
-    @user_messages = current_user.messages 
+    @user_messages = current_user.outgoing_messages 
     @pages = @user_messages.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
   

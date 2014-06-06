@@ -1,3 +1,4 @@
+<div class="profile-page edit">
 <h2>Edit Profile Page</h2>
 
 <%= form_for :user, url: update_profile_user_path, :method => :put do |f| %>
@@ -39,7 +40,7 @@
 
   <%= field_set_tag do %>
     <%= f.label :about %> 
-    <%= f.text_field :about %>
+    <%= f.text_area(:about, :cols => 50, :rows => 20, :placeholder => "Tell us about yourself ... ", :class => "about") %>
   <% end %>
 
   <%= field_set_tag do %>
@@ -78,4 +79,4 @@
   <%= submit_tag "Update" %> 
   
 <% end %>
-  
+</div> 

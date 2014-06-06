@@ -13,10 +13,18 @@ require 'spec_helper'
 describe MessageHelper do
 
   describe "status_read" do
+    before do
+       @sender = User.create!(:first_name => Faker::Name.first_name, :password => "password",
+        :last_name => Faker::Name.last_name, :email => Faker::Internet.email,
+        :password_confirmation => "password", :username => "joejoe", :preference => "Male")
 
+        @receiver = User.create!(:first_name => Faker::Name.first_name, :password => "password",
+        :last_name => Faker::Name.last_name, :email => Faker::Internet.email,
+        :password_confirmation => "password", :username => "lacey", :preference => "Female")
+    end
     context "read" do
       before do
-        @message = Message.create!(:read => true)
+        @message = Message.create!(:read => true, :body => "this is the body", :sender => @sender, :receiver => @receiver)
       end
 
       it "should return read" do
@@ -26,7 +34,7 @@ describe MessageHelper do
 
     context "unread" do
       before do
-        @message = Message.create!(:read => false)
+        @message = Message.create!(:read => false, :body => "this is the body", :sender => @sender, :receiver => @receiver)
       end
 
       it "should return unread" do

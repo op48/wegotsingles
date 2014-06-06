@@ -30,7 +30,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
-
 -- Name: ethnicities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -62,6 +61,69 @@ ALTER SEQUENCE ethnicities_id_seq OWNED BY ethnicities.id;
 
 
 --
+-- Name: horoscopes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE horoscopes (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    name character varying(255)
+);
+
+
+--
+-- Name: horoscopes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE horoscopes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: horoscopes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE horoscopes_id_seq OWNED BY horoscopes.id;
+
+
+--
+-- Name: languages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE languages (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    name character varying(255),
+    code character varying(255)
+);
+
+
+--
+-- Name: languages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE languages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: languages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE languages_id_seq OWNED BY languages.id;
+
+
+--
 -- Name: messages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -69,14 +131,12 @@ CREATE TABLE messages (
     id integer NOT NULL,
     subject character varying(255),
     body text,
-    sender_username character varying(255),
     sender_id integer,
-    user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-
-    message_id integer
-    read boolean DEFAULT false
+    message_id integer,
+    read boolean DEFAULT false,
+    recipient_id integer
 );
 
 
@@ -141,6 +201,38 @@ ALTER SEQUENCE user_ethnicities_id_seq OWNED BY user_ethnicities.id;
 
 
 --
+-- Name: user_languages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE user_languages (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    language_id integer,
+    user_id integer
+);
+
+
+--
+-- Name: user_languages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_languages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_languages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_languages_id_seq OWNED BY user_languages.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -162,16 +254,16 @@ CREATE TABLE users (
     last_name character varying(255),
     username character varying(255),
     type character varying(255),
-
     preference character varying(255),
-    birthday date
+    birthday date,
     age integer,
     gender character varying(255),
     about text,
     image_url character varying(255),
-    preference character varying(255),
-    birthday date,
-    height numeric(6,2)
+    height numeric(6,2),
+    smoking boolean,
+    horoscope character varying(255),
+    horoscope_id integer
 );
 
 
@@ -205,6 +297,20 @@ ALTER TABLE ONLY ethnicities ALTER COLUMN id SET DEFAULT nextval('ethnicities_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY horoscopes ALTER COLUMN id SET DEFAULT nextval('horoscopes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY languages ALTER COLUMN id SET DEFAULT nextval('languages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
 
 
@@ -219,16 +325,38 @@ ALTER TABLE ONLY user_ethnicities ALTER COLUMN id SET DEFAULT nextval('user_ethn
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY user_languages ALTER COLUMN id SET DEFAULT nextval('user_languages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
-
 -- Name: ethnicities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY ethnicities
     ADD CONSTRAINT ethnicities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: horoscopes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY horoscopes
+    ADD CONSTRAINT horoscopes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: languages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY languages
+    ADD CONSTRAINT languages_pkey PRIMARY KEY (id);
 
 
 --
@@ -240,12 +368,19 @@ ALTER TABLE ONLY messages
 
 
 --
-
 -- Name: user_ethnicities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY user_ethnicities
     ADD CONSTRAINT user_ethnicities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_languages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY user_languages
+    ADD CONSTRAINT user_languages_pkey PRIMARY KEY (id);
 
 
 --
@@ -276,6 +411,7 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
 
+
 --
 -- PostgreSQL database dump complete
 --
@@ -290,13 +426,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140602135934');
 
 INSERT INTO schema_migrations (version) VALUES ('20140602141656');
 
-<<<<<<< HEAD
-INSERT INTO schema_migrations (version) VALUES ('20140602160546');
-
-INSERT INTO schema_migrations (version) VALUES ('20140603100012');
-
-INSERT INTO schema_migrations (version) VALUES ('20140603165643');
-=======
 INSERT INTO schema_migrations (version) VALUES ('20140602142456');
 
 INSERT INTO schema_migrations (version) VALUES ('20140602160442');
@@ -317,9 +446,39 @@ INSERT INTO schema_migrations (version) VALUES ('20140603091958');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603100012');
 
+INSERT INTO schema_migrations (version) VALUES ('20140603165643');
+
 INSERT INTO schema_migrations (version) VALUES ('20140604093425');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604121617');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604123643');
+
+INSERT INTO schema_migrations (version) VALUES ('20140604164334');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605093342');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605144608');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605144615');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605145844');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605152607');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605170129');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606081332');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606085541');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606095233');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606095321');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606095554');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606095914');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606100255');
 

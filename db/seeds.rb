@@ -35,6 +35,19 @@ end
 	@receive = Message.create!(subject: "test#{i}", sender: lola, receiver: joe)
 end
 
+Horoscope.find_or_create_by(:name => "Aries")
+Horoscope.find_or_create_by(:name => "Taurus")
+Horoscope.find_or_create_by(:name => "Gemini")
+Horoscope.find_or_create_by(:name => "Cancer")
+Horoscope.find_or_create_by(:name => "Leo")
+Horoscope.find_or_create_by(:name => "Virgo")
+Horoscope.find_or_create_by(:name => "Libra")
+Horoscope.find_or_create_by(:name => "Scorpio")
+Horoscope.find_or_create_by(:name => "Sagittarius")
+Horoscope.find_or_create_by(:name => "Capricorn")
+Horoscope.find_or_create_by(:name => "Aquarius")
+Horoscope.find_or_create_by(:name => "Pisces")
+
 Ethnicity.find_or_create_by(:name => "Asian")
 Ethnicity.find_or_create_by(:name => "Middle Eastern")
 Ethnicity.find_or_create_by(:name => "Black")
@@ -44,8 +57,6 @@ Ethnicity.find_or_create_by(:name => "Pacific Islander")
 Ethnicity.find_or_create_by(:name => "Hispanic")
 Ethnicity.find_or_create_by(:name => "White")
 Ethnicity.find_or_create_by(:name => "Other")
-
-
 
 Language.find_or_create_by(:name => "Afrikaans", :code => "AF")
 Language.find_or_create_by(:name => "Albanian", :code => "SQ")

@@ -1,18 +1,18 @@
-
-<h2 id="message-subject"><%= @message.subject %></h2>
-
-<div class="message-wrapper">
-  <p>From: <%= @message.sender_username %><p>
-  <p><%= @message.body %></p>
-  <p><%= @message.created_at %></p>
+<div id="messages">
+    <%= render partial: "messages/message", :locals => { :message => @message } %>
 </div>
 
 <%= link_to 'Delete', message_path(@message), :method => :delete, data: {confirm: "Are you sure?"}%>
 <%= link_to 'Inbox', messages_path %>
-<%= link_to 'Reply', message_path, id: "reply-button" %>
+<%= link_to 'Reply', message_path(@message), id: "reply-button" %>
 
-<form id="reply-form">
-  <p>Reply to: <%=  @message.sender_username %></p>
-  <textarea cols="50", rows="20", placeholder="Write your reply here...", name="reply-textarea"></textarea>
-  <%= link_to 'send', messages_path, :method => :post %> 
-</form>
+<%= @reply.errors.full_messages %>
+
+<%= form_for :reply, url: messages_path, :method => :post, html: { id: "reply-form" }, :remote => true do |m| %>
+
+  <%= m.hidden_field :recipient_id %><br />
+  <%= m.hidden_field :message_id %><br />
+  <%= m.label :body %><br />
+  <%= m.text_area(:body, cols: 50, rows: 20, placeholder: 'Write your reply here...') %><br />
+  <%= m.submit 'send' %>
+<% end %>

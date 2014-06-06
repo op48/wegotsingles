@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
-=======
+
 -- Name: ethnicities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -276,7 +276,6 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
 
-
 --
 -- PostgreSQL database dump complete
 --
@@ -323,5 +322,4 @@ INSERT INTO schema_migrations (version) VALUES ('20140604093425');
 INSERT INTO schema_migrations (version) VALUES ('20140604121617');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604123643');
-
 

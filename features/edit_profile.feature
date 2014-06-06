@@ -1,5 +1,5 @@
 Feature: Edit Profile
-@wip
+
 Scenario: A user edits their profile
   Given a user exists
     And ethnicities exist

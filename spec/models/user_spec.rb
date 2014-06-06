@@ -10,4 +10,7 @@ describe User do
   
   it { should validate_presence_of(:preference) }
 
+  it { should have_many(:user_languages) }
+  it { should have_many(:languages).through(:user_languages) }
+
 end

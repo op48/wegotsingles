@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140606095554) do
+ActiveRecord::Schema.define(version: 20140606145236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ethnicities", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "horoscopes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -36,8 +41,8 @@ ActiveRecord::Schema.define(version: 20140606095554) do
     t.integer  "sender_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "message_id"
     t.boolean  "read",         default: false
+    t.integer  "message_id"
     t.integer  "recipient_id"
   end
 
@@ -72,20 +77,17 @@ ActiveRecord::Schema.define(version: 20140606095554) do
     t.string   "last_name"
     t.string   "username"
     t.string   "type"
-
     t.string   "preference"
     t.date     "birthday"
-
     t.integer  "age"
     t.string   "gender"
     t.text     "about"
     t.string   "image_url"
-    t.string   "preference"
-    t.date     "birthday"
     t.decimal  "height",                 precision: 6, scale: 2
-
     t.boolean  "smoking"
-
+    t.string   "horoscope"
+    t.integer  "horoscope_id"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

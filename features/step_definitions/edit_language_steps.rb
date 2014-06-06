@@ -3,10 +3,11 @@ Given(/^languages exist$/) do
   @languages.each do |l|
     Language.create!(name: l)
   end
+   # binding.pry
 end
 
 Given(/^a user has languages$/) do
-  @user.languages(:language_ids => [1,2,3])
+  @user.languages(:language_ids => [0])
 end
 
 Given(/^the edit profile page has languages$/) do
@@ -16,11 +17,21 @@ Given(/^the edit profile page has languages$/) do
   end
 end
 
-When(/^they choose to add a language$/) do
-  check "Ruby"
+
+When(/^they choose to add more than one language$/) do
+  save_and_open_page
+  select('Japanese', :from => 'user_language_ids')
+  select('Ruby', :from => 'user_language_ids')
+
 end
 
 Then(/^their profile should be updated$/) do
   @user.reload
-  expect(@user.languages).to eq([Language.find_by(:name => "Ruby" )])
+  counter = 0
+  @userlanguages = @user.languages.all
+  @userlanguages.each do |language|
+    counter+=1
+  end
+  expect(counter).to eq(2)
+
 end

@@ -15,5 +15,5 @@ When(/^we click on "(.*?)" button below the message$/) do |send|
 end
 
 Then(/^our message containing "(.*?)" is sent to the sender of the original message$/) do |message|
-  expect(@receiver.reload.incoming_messages.length).to eq(1)
+  expect(@user.reload.incoming_messages.length).to eq(1)
 end

@@ -1,5 +1,7 @@
 <h2>Edit Profile Page</h2>
 
+<%= image_tag(@user.avatar.url , class: "avatar") if @user.avatar? %>
+
 <%= form_for @user, as: :user, url: {action: "update"} do |f| %>
   
   <%= field_set_tag do %>
@@ -63,6 +65,11 @@
     <%= f.label :horoscope_id %>
     <%= f.select(:horoscope_id, Horoscope.all.collect { |h| [h.name, h.id] })  %>
   </div>
+
+  <%= field_set_tag do %>
+    <%= f.label :avatar %>
+    <%= f.file_field(:avatar, accept: 'image/png,image/gif.image/jpeg') %>
+  <% end %>
 
 
   <%= submit_tag "Update" %> 

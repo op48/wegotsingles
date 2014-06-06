@@ -8,7 +8,9 @@
   <li>Age: <%= @user.age %></li>
   <li>Gender: <%= @user.type %></li>
   <li>Height: <%= @user.height %> cm</li>
-  <li>Imperial Height: <%= @user.imperial_height %> ft</li>
+  <%# if @user.imperial_height != nil %>
+    <li>Imperial Height: <%= @user.imperial_height %> ft</li>
+  <%# end %>
   <li>Preference: <%= @user.preference %> </li>
 </ul>
 

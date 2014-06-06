@@ -48,8 +48,14 @@
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :imperial_height %> 
-    <%= f.text_field :imperial_height %> ft
+  <%= f.label :imperial_height %> 
+  <% height_options = [] %>  
+  <% (4...8).each do |ft| %>
+    <% (1...13).each do |inch|%> 
+      <% height_options.push("#{ft}' #{inch}") %>
+    <% end %>
+  <% end %>
+    <%= f.select :imperial_height, height_options, include_blank: true %> ft
   <% end %>
 
   <div id ="ethnicities">

@@ -135,10 +135,14 @@ CREATE TABLE messages (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    read boolean DEFAULT false,
     message_id integer,
+<<<<<<< HEAD
     recipient_id integer,
     recipient_username character varying(255)
+=======
+    read boolean DEFAULT false,
+    recipient_id integer
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 );
 
 
@@ -201,6 +205,7 @@ CREATE TABLE schema_migrations (
 
 
 --
+<<<<<<< HEAD
 -- Name: user_ethnicities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -233,6 +238,8 @@ ALTER SEQUENCE user_ethnicities_id_seq OWNED BY user_ethnicities.id;
 
 
 --
+=======
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 -- Name: user_languages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -286,14 +293,20 @@ CREATE TABLE users (
     last_name character varying(255),
     username character varying(255),
     type character varying(255),
+    preference character varying(255),
+    birthday date,
     age integer,
     gender character varying(255),
     about text,
     image_url character varying(255),
-    preference character varying(255),
-    birthday date,
     height numeric(6,2),
+<<<<<<< HEAD
     smoking boolean
+=======
+    smoking boolean,
+    horoscope character varying(255),
+    horoscope_id integer
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 );
 
 
@@ -355,6 +368,7 @@ ALTER TABLE ONLY occupations ALTER COLUMN id SET DEFAULT nextval('occupations_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+<<<<<<< HEAD
 ALTER TABLE ONLY user_ethnicities ALTER COLUMN id SET DEFAULT nextval('user_ethnicities_id_seq'::regclass);
 
 
@@ -362,6 +376,8 @@ ALTER TABLE ONLY user_ethnicities ALTER COLUMN id SET DEFAULT nextval('user_ethn
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+=======
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 ALTER TABLE ONLY user_languages ALTER COLUMN id SET DEFAULT nextval('user_languages_id_seq'::regclass);
 
 
@@ -413,6 +429,7 @@ ALTER TABLE ONLY occupations
 
 
 --
+<<<<<<< HEAD
 -- Name: user_ethnicities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -421,6 +438,8 @@ ALTER TABLE ONLY user_ethnicities
 
 
 --
+=======
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 -- Name: user_languages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -515,6 +534,13 @@ INSERT INTO schema_migrations (version) VALUES ('20140605170129');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606081332');
 
+<<<<<<< HEAD
+=======
+INSERT INTO schema_migrations (version) VALUES ('20140606085541');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606095233');
+
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 INSERT INTO schema_migrations (version) VALUES ('20140606095321');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606103942');

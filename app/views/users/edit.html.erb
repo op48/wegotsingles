@@ -26,8 +26,13 @@
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :type, text = "Gender" %> 
+    <%= f.label :type, "Gender" %> 
     <%= f.text_field :type %>
+  <% end %>
+  
+  <%= field_set_tag do %>
+    <%= f.label :occupation %> 
+    <%= f.text_field :occupation %>
   <% end %>
 
   <%= field_set_tag do %>

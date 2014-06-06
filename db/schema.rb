@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606145236) do
+ActiveRecord::Schema.define(version: 20140606161516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 20140606145236) do
     t.string   "type"
     t.integer  "age"
     t.text     "about"
-    t.string   "image_url"
     t.string   "preference"
     t.date     "birthday"
     t.decimal  "height",                 precision: 6, scale: 2
@@ -87,6 +86,7 @@ ActiveRecord::Schema.define(version: 20140606145236) do
     t.string   "horoscope"
     t.integer  "horoscope_id"
     t.string   "avatar"
+    t.string   "occupation"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

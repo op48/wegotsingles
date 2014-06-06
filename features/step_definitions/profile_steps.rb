@@ -7,7 +7,6 @@ Given(/^a user exists$/) do
     :username => Faker::Internet.user_name,
     :email => Faker::Internet.email,
     :password => Faker::Internet.password,
-    :image_url => "http://thefuntimesguide.com/images/blogs/Ms_Green_MMs_on_Couch.jpg",
     :age => "27", 
     :type => "Female",
     :email => @email,

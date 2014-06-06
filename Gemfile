@@ -11,6 +11,7 @@ gem 'spring', group: :development
 gem 'thin'
 gem 'devise'
 gem 'will_paginate', '~> 3.0'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'simplecov', '~> 0.7.1', :require => false

@@ -10,6 +10,8 @@ Given(/^a user has ethnicities$/) do
   @user.ethnicities(:ethnicity_ids => [1,2])
 end
 
+
+
 Given(/^a user signs in$/) do
   visit new_user_session_path
   fill_in("Email", :with => @user.email)
@@ -28,6 +30,11 @@ Then(/^ethnicities exist on the page$/) do
   end
 end
 
+Then(/^smoking preferences exist on the page$/) do
+  expect(page.has_content?(@user.smoking)).to be true
+end
+
+
 When(/^the user updates their basic info$/) do
   @first_name = Faker::Name.first_name
   @last_name = Faker::Name.last_name
@@ -43,6 +50,7 @@ When(/^the user updates their basic info$/) do
   fill_in("About", :with => @about)
   #check('user[ethnicity_ids][]')
   check "Bengalis"
+  choose("user_smoking_true")
 end
 
 When(/^the user submits the form$/) do

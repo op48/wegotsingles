@@ -7,8 +7,9 @@ Given(/^we have a logged\-in user called "(.*?)"$/) do |name|
 end
 
 Given(/^"(.*?)" has messages in his inbox$/) do |user|
-  @message = Message.new(:subject => "Hi", :body => "Welcome Joe", :sender_username => "admin")
-  @user.messages << @message
+  @receiver = User.create!(:first_name => user, :email => "sender@example.org", :password => "password", :username => "sender", :preference => "Female")
+  @message = Message.new(:subject => "Hi", :body => "Welcome Joe", :sender => @receiver, :receiver => @user)
+  @user.incoming_messages << @message
 end
 
 Given(/^that we are on the homepage$/) do

@@ -31,10 +31,11 @@ Female.find_or_create_by!(:id => "2") do |user|
 end
 
 joe = User.first
+jenny88 = User.second
 
 20.times do |i|
 	@mess = Message.create(subject: "test#{i}", sender: joe, receiver: jenny88)
-  joe.messages << @mess
+  joe.incoming_messages << @mess
 end
 
 Horoscope.find_or_create_by(:name => "Aries")

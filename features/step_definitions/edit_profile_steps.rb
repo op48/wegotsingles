@@ -64,7 +64,6 @@ Then(/^his profile should be updated$/) do
   expect(@user.username).to eq(@username)
   expect(@user.age).to eq(27)
   expect(@user.gender).to eq("F")
-  expect(@user.image_url).to eq("http://www.officialpsds.com/images/thumbs/MMs-Witch-psd87860.png")
   expect(@user.preference).to eq("straight")
   expect(@user.about).to eq(@about)
   expect(@user.ethnicities).to eq([@bengalis]) 

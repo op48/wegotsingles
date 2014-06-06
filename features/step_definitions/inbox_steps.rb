@@ -1,5 +1,5 @@
 Given(/^we have a logged\-in user called "(.*?)"$/) do |name|
-  @user = User.create!(:first_name => name, :email => "joe@example.org", :password => "password", :username => "joe", :preference => "Female")
+  @user = User.create!(:first_name => name, :email => "joe@example.org", :password => "password", :username => name, :preference => "Female")
   visit '/users/sign_in'
   fill_in "Email", :with => "joe@example.org"
   fill_in "Password", :with => "password"
@@ -7,9 +7,8 @@ Given(/^we have a logged\-in user called "(.*?)"$/) do |name|
 end
 
 Given(/^"(.*?)" has messages in his inbox$/) do |user|
-  @receiver = User.create!(:first_name => user, :email => "sender@example.org", :password => "password", :username => "sender", :preference => "Female")
-  @message = Message.new(:subject => "Hi", :body => "Welcome Joe", :sender => @receiver, :receiver => @user)
-  @user.incoming_messages << @message
+  r = User.create!(:first_name => name, :email => Faker::Internet.email, :password => "password", :username => Faker::Internet.user_name, :preference => "Female")
+  @message = Message.create!(:subject => "Hi", :body => "Welcome Joe", :sender => r, :receiver => @user)
 end
 
 Given(/^that we are on the homepage$/) do

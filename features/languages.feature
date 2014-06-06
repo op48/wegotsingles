@@ -9,6 +9,6 @@ Feature: Languages
       And the edit profile page has languages
 
   Scenario: Add Languages to user profile
-    When they choose to add a language
+    When they choose to add more than one language
       And the user submits the form
     Then their profile should be updated

@@ -67,8 +67,7 @@ ALTER SEQUENCE ethnicities_id_seq OWNED BY ethnicities.id;
 CREATE TABLE horoscopes (
     id integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    name character varying(255)
+    updated_at timestamp without time zone
 );
 
 
@@ -131,12 +130,19 @@ CREATE TABLE messages (
     id integer NOT NULL,
     subject character varying(255),
     body text,
+    sender_username character varying(255),
     sender_id integer,
+    user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    read boolean DEFAULT false,
     message_id integer,
+<<<<<<< HEAD
+    recipient_id integer,
+    recipient_username character varying(255)
+=======
+    read boolean DEFAULT false,
     recipient_id integer
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 );
 
 
@@ -160,6 +166,36 @@ ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
 
 
 --
+-- Name: occupations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE occupations (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: occupations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE occupations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: occupations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE occupations_id_seq OWNED BY occupations.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -169,6 +205,7 @@ CREATE TABLE schema_migrations (
 
 
 --
+<<<<<<< HEAD
 -- Name: user_ethnicities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -201,38 +238,8 @@ ALTER SEQUENCE user_ethnicities_id_seq OWNED BY user_ethnicities.id;
 
 
 --
--- Name: user_horoscopes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE user_horoscopes (
-    id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    horoscope_id integer,
-    user_id integer
-);
-
-
---
--- Name: user_horoscopes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE user_horoscopes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_horoscopes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE user_horoscopes_id_seq OWNED BY user_horoscopes.id;
-
-
---
+=======
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 -- Name: user_languages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -286,16 +293,20 @@ CREATE TABLE users (
     last_name character varying(255),
     username character varying(255),
     type character varying(255),
+    preference character varying(255),
+    birthday date,
     age integer,
     gender character varying(255),
     about text,
     image_url character varying(255),
-    preference character varying(255),
-    birthday date,
     height numeric(6,2),
-    horoscope character varying(255),
-    horoscope_id integer,
+<<<<<<< HEAD
     smoking boolean
+=======
+    smoking boolean,
+    horoscope character varying(255),
+    horoscope_id integer
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 );
 
 
@@ -350,6 +361,14 @@ ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY occupations ALTER COLUMN id SET DEFAULT nextval('occupations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+<<<<<<< HEAD
 ALTER TABLE ONLY user_ethnicities ALTER COLUMN id SET DEFAULT nextval('user_ethnicities_id_seq'::regclass);
 
 
@@ -357,13 +376,8 @@ ALTER TABLE ONLY user_ethnicities ALTER COLUMN id SET DEFAULT nextval('user_ethn
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY user_horoscopes ALTER COLUMN id SET DEFAULT nextval('user_horoscopes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
+=======
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 ALTER TABLE ONLY user_languages ALTER COLUMN id SET DEFAULT nextval('user_languages_id_seq'::regclass);
 
 
@@ -407,6 +421,15 @@ ALTER TABLE ONLY messages
 
 
 --
+-- Name: occupations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY occupations
+    ADD CONSTRAINT occupations_pkey PRIMARY KEY (id);
+
+
+--
+<<<<<<< HEAD
 -- Name: user_ethnicities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -415,14 +438,8 @@ ALTER TABLE ONLY user_ethnicities
 
 
 --
--- Name: user_horoscopes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY user_horoscopes
-    ADD CONSTRAINT user_horoscopes_pkey PRIMARY KEY (id);
-
-
---
+=======
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 -- Name: user_languages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -517,19 +534,14 @@ INSERT INTO schema_migrations (version) VALUES ('20140605170129');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606081332');
 
-INSERT INTO schema_migrations (version) VALUES ('20140606081423');
-
-INSERT INTO schema_migrations (version) VALUES ('20140606083219');
-
+<<<<<<< HEAD
+=======
 INSERT INTO schema_migrations (version) VALUES ('20140606085541');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606095233');
 
+>>>>>>> 6603674b181d2cc07ab24fa239c47a16f648a7f3
 INSERT INTO schema_migrations (version) VALUES ('20140606095321');
 
-INSERT INTO schema_migrations (version) VALUES ('20140606095554');
-
-INSERT INTO schema_migrations (version) VALUES ('20140606095914');
-
-INSERT INTO schema_migrations (version) VALUES ('20140606100255');
+INSERT INTO schema_migrations (version) VALUES ('20140606103942');
 

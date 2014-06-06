@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-  has_many :incoming_messages, :class_name => "Message", :foreign_key => :message_id
-	has_many :outgoing_messages, :class_name => "Message", :foreign_key => :message_id
+  has_many :incoming_messages, :class_name => "Message", :foreign_key => :recipient_id
+	has_many :outgoing_messages, :class_name => "Message", :foreign_key => :sender_id
 
   validates_uniqueness_of :username
   validates_presence_of :username
@@ -21,4 +21,6 @@ class User < ActiveRecord::Base
   has_many :languages, :through => :user_languages
 
   belongs_to :horoscope
+
+  mount_uploader :avatar, AvatarUploader
 end

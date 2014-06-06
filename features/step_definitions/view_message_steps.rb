@@ -7,9 +7,9 @@ Given(/^we select "(.*?)"$/) do |button|
 end
 
 Given(/^the user has a message from "(.*?)"$/) do |user|
-  @message = Message.new(:subject => "Test Subject", :body => "This is a message from Joe Bloggs")
+	sender = User.find_by(:username => user)
   joe = User.create!(:email => "joe@example.com", :password => "password", :username => "joe-b", :preference => "Male")
-  joe.incoming_messages << @message
+  @message = Message.create!(:subject => "Test Subject", :body => "This is a message from Joe Bloggs", :sender => sender, :receiver => joe)
 end
 
 Then(/^we should see that message$/) do

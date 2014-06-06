@@ -21,4 +21,6 @@ class User < ActiveRecord::Base
   has_many :languages, :through => :user_languages
 
   belongs_to :horoscope
+
+  mount_uploader :avatar, AvatarUploader
 end

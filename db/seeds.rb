@@ -7,38 +7,33 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-joe = User.find_or_create_by!(:id => "1") do |user|
+joe = User.find_or_create_by!(:username => "joey88") do |user|
   user.email = "joe@email.com" 
   user.password = "password"
-  user.username = "joey88"
   user.birthday = "16 Jun 1979"
   user.gender = "male" 
   user.preference = "female"
 end
 
-User.find_or_create_by!(:id => "2") do |user|
+lola = Female.find_or_create_by!(:username => "lola3") do |user|
+  user.email = "lola@email.com" 
+  user.password = "password"
+  user.birthday = "18 Aug 1982"
+  user.gender = "female" 
+  user.preference = "male"
+end
+
+User.find_or_create_by!(:username => "jenny88") do |user|
   user.email = "jenny@email.com" 
   user.password = "drowssap"
-  user.username = "jenny88"
   user.birthday = "20 Mar 1978"
   user.gender = "female" 
   user.preference = "male"
 end
 
-joe = User.first
-100.times do |i|
-	@recieve = Message.create(subject: "test#{i}", sender_username: "admin")
-	joe.messages << @recieve
+5.times do |i|
+	@receive = Message.create!(subject: "test#{i}", sender: lola, receiver: joe)
 end
-
-100.times do |i|
-	@sent = Message.create(subject: "test#{i}", recipient_username: "Bonnie")
-	joe.messages << @sent
-end
-
-
-
-
 
 Ethnicity.find_or_create_by(:name => "Asian")
 Ethnicity.find_or_create_by(:name => "Middle Eastern")
@@ -124,3 +119,6 @@ Language.find_or_create_by(:name => "Uzbek", :code => "UZ")
 Language.find_or_create_by(:name => "Vietnamese", :code => "VI")
 Language.find_or_create_by(:name => "Welsh", :code => "CY")
 Language.find_or_create_by(:name => "Xhosa", :code => "XH")
+
+
+

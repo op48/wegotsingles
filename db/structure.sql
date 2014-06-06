@@ -99,7 +99,8 @@ CREATE TABLE languages (
     id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    name character varying(255)
+    name character varying(255),
+    code character varying(255)
 );
 
 
@@ -130,13 +131,12 @@ CREATE TABLE messages (
     id integer NOT NULL,
     subject character varying(255),
     body text,
-    sender_username character varying(255),
     sender_id integer,
-    user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    read boolean DEFAULT false
-    message_id integer
+    read boolean DEFAULT false,
+    message_id integer,
+    recipient_id integer
 );
 
 
@@ -294,9 +294,8 @@ CREATE TABLE users (
     birthday date,
     height numeric(6,2),
     horoscope character varying(255),
-    horoscope_id integer
-    preference character varying(255),
-    birthday date
+    horoscope_id integer,
+    smoking boolean
 );
 
 
@@ -494,11 +493,17 @@ INSERT INTO schema_migrations (version) VALUES ('20140603091958');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603100012');
 
+INSERT INTO schema_migrations (version) VALUES ('20140603165643');
+
 INSERT INTO schema_migrations (version) VALUES ('20140604093425');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604121617');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604123643');
+
+INSERT INTO schema_migrations (version) VALUES ('20140604164334');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605093342');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605144608');
 
@@ -508,6 +513,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140605145844');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605152607');
 
+INSERT INTO schema_migrations (version) VALUES ('20140605170129');
+
 INSERT INTO schema_migrations (version) VALUES ('20140606081332');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606081423');
@@ -516,12 +523,13 @@ INSERT INTO schema_migrations (version) VALUES ('20140606083219');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606085541');
 
+INSERT INTO schema_migrations (version) VALUES ('20140606095233');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606095321');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606095554');
+
 INSERT INTO schema_migrations (version) VALUES ('20140606095914');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606100255');
 
-INSERT INTO schema_migrations (version) VALUES ('20140602160546');
-
-INSERT INTO schema_migrations (version) VALUES ('20140603100012');
-
-INSERT INTO schema_migrations (version) VALUES ('20140603165643');

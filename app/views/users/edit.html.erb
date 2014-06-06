@@ -49,6 +49,17 @@
     <%= f.text_field :height %> cm
   <% end %> 
 
+  <div id = "smoking">
+    <%= field_set_tag do %>
+      <h4>Smoking?</h4> 
+      <%= f.label :smoking,"Yes" %>
+      <%= f.radio_button :smoking, 'true' %>
+
+      <%= f.label :smoking, "No" %>
+      <%= f.radio_button :smoking, 'false' %>
+    <% end %>
+  </div>
+
   <div id ="ethnicities">
     <h4>Ethnicities</h4>
     <%= f.collection_check_boxes :ethnicity_ids, 
@@ -57,8 +68,7 @@
   
   <div id ="languages">
     <h4>Languages</h4>
-    <%= f.collection_check_boxes :language_ids, 
-    @languages, :id, :name %>
+    <%= collection_select(:user, :language_ids, @languages, :id, :name,{},{multiple:true}) %>
   </div>
   
   <div id ="horoscopes">

@@ -7,6 +7,14 @@ Rails.application.routes.draw do
   			get 'outbox'
   		end
   	end
-		
+
+  resources :users, :only => [:show]
+  resource :user, :only => [:edit, :update] do
+    member do
+      get 'me'
+    end
+  end
+
+  resources :messages
 
 end

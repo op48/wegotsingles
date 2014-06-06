@@ -13,7 +13,9 @@ gem 'devise'
 gem 'will_paginate', '~> 3.0'
 
 group :development, :test do
+
   gem 'rspec-rails', '~> 2'
+
   gem 'shoulda-matchers'
   gem 'faker'
   gem 'pry-byebug'

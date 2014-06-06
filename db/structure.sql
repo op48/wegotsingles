@@ -23,6 +23,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -190,4 +191,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140602160546');
 INSERT INTO schema_migrations (version) VALUES ('20140603100012');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603165643');
+
 

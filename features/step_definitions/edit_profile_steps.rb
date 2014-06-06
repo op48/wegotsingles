@@ -45,7 +45,7 @@ When(/^the user updates their basic info$/) do
   fill_in("Username", :with => @username)
   fill_in("Age", :with => 27)
   fill_in("Gender", :with => "F")
-  fill_in("Image url", :with => "http://www.officialpsds.com/images/thumbs/MMs-Witch-psd87860.png")
+  fill_in("Occupation", :with => "Butcher")
   fill_in("Preference", :with => "straight")
   fill_in("About", :with => @about)
   #check('user[ethnicity_ids][]')
@@ -66,5 +66,6 @@ Then(/^his profile should be updated$/) do
   expect(@user.gender).to eq("F")
   expect(@user.preference).to eq("straight")
   expect(@user.about).to eq(@about)
+  expect(@user.occupation).to eq("Butcher")
   expect(@user.ethnicities).to eq([@bengalis]) 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606145236) do
+ActiveRecord::Schema.define(version: 20140606161516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20140606145236) do
     t.integer  "sender_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "read",         default: false
     t.integer  "message_id"
+    t.boolean  "read",         default: false
     t.integer  "recipient_id"
   end
 
@@ -77,16 +77,16 @@ ActiveRecord::Schema.define(version: 20140606145236) do
     t.string   "last_name"
     t.string   "username"
     t.string   "type"
-    t.string   "preference"
-    t.date     "birthday"
     t.integer  "age"
     t.string   "gender"
     t.text     "about"
-    t.string   "image_url"
+    t.string   "preference"
+    t.date     "birthday"
     t.decimal  "height",                 precision: 6, scale: 2
     t.boolean  "smoking"
     t.string   "horoscope"
     t.integer  "horoscope_id"
+    t.string   "occupation"
     t.string   "avatar"
   end
 

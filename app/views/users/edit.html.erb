@@ -66,8 +66,7 @@
   
   <div id ="languages">
     <h4>Languages</h4>
-    <%= f.collection_check_boxes :language_ids, 
-    @languages, :id, :name %>
+    <%= collection_select(:user, :language_ids, @languages, :id, :name,{},{multiple:true}) %>
   </div>
 
 

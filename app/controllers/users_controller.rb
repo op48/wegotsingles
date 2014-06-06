@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @reply = Message.new(:receiver => @user, :sender => current_user)
   end
 
   def me

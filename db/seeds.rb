@@ -7,10 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-joe = Male.find_or_create_by!(:id => "1") do |user|
+
+joe = Male.find_or_create_by!(:username => "joey88") do |user|
   user.email = "joe@email.com" 
   user.password = "password"
-  user.username = "joey88"
   user.birthday = "16 Jun 1979"
   user.preference = "Female"
   user.height = 180
@@ -19,10 +19,17 @@ joe = Male.find_or_create_by!(:id => "1") do |user|
 
 end
 
-Female.find_or_create_by!(:id => "2") do |user|
+lola = Female.find_or_create_by!(:username => "lola3") do |user|
+  user.email = "lola@email.com" 
+  user.password = "password"
+  user.birthday = "18 Aug 1982"
+  user.gender = "female" 
+  user.preference = "male"
+end
+
+User.find_or_create_by!(:username => "jenny88") do |user|
   user.email = "jenny@email.com" 
   user.password = "drowssap"
-  user.username = "jenny88"
   user.birthday = "20 Mar 1978"
   user.preference = "Male"
   user.height = 169
@@ -30,12 +37,8 @@ Female.find_or_create_by!(:id => "2") do |user|
   user.about = "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 end
 
-joe = User.first
-jenny88 = User.second
-
-20.times do |i|
-	@mess = Message.create(subject: "test#{i}", sender: joe, receiver: jenny88)
-  joe.incoming_messages << @mess
+5.times do |i|
+	@receive = Message.create!(subject: "test#{i}", sender: lola, receiver: joe)
 end
 
 Horoscope.find_or_create_by(:name => "Aries")
@@ -133,3 +136,6 @@ Language.find_or_create_by(:name => "Uzbek", :code => "UZ")
 Language.find_or_create_by(:name => "Vietnamese", :code => "VI")
 Language.find_or_create_by(:name => "Welsh", :code => "CY")
 Language.find_or_create_by(:name => "Xhosa", :code => "XH")
+
+
+

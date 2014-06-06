@@ -3,29 +3,26 @@
 
 <%= form_for :user, url: update_profile_user_path, :method => :put do |f| %>
 
+<%= image_tag(@user.avatar.url , class: "avatar") if @user.avatar? %>
+
   <%= field_set_tag do %>
-    <%= f.label :first_name %> 
+    <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :last_name %> 
+    <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :username %> 
+    <%= f.label :username %>
     <%= f.text_field :username %>
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :age %> 
+    <%= f.label :age %>
     <%= f.text_field :age %>
-  <% end %>
-
-  <%= field_set_tag do %>
-    <%= f.label :image_url %> 
-    <%= f.text_field :image_url %>
   <% end %>
 
   <%= field_set_tag do %>
@@ -34,7 +31,7 @@
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :preference %> 
+    <%= f.label :preference %>
     <%= f.text_field :preference %>
   <% end %>
 
@@ -44,39 +41,55 @@
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :height %> 
+    <%= f.label :height %>
     <%= f.text_field :height %> cm
   <% end %>
 
   <%= field_set_tag do %>
-  <%= f.label :imperial_height %> 
-  <% height_options = [] %>  
-  <% (4...8).each do |ft| %>
-    <% (1...13).each do |inch|%> 
-      <% height_options.push("#{ft}' #{inch}") %>
+    <%= f.label :imperial_height %> 
+    <% height_options = [] %>  
+    <% (4...8).each do |ft| %>
+      <% (1...13).each do |inch|%> 
+        <% height_options.push("#{ft}' #{inch}") %>
+      <% end %>
     <% end %>
-  <% end %>
     <%= f.select :imperial_height, height_options, include_blank: true %> ft
   <% end %>
+  
+  <div id = "smoking" class="form-section">
+    <%= field_set_tag do %>
+      <h4>Smoking?</h4>
+      <%= f.label :smoking,"Yes" %>
+      <%= f.radio_button :smoking, 'true' %>
 
-  <div id ="ethnicities">
+      <%= f.label :smoking, "No" %>
+      <%= f.radio_button :smoking, 'false' %>
+    <% end %>
+  </div>
+
+  <div id ="ethnicities" class="form-section">
     <h4>Ethnicities</h4>
-    <%= f.collection_check_boxes :ethnicity_ids, 
+    <%= f.collection_check_boxes :ethnicity_ids,
     @ethnicities, :id, :name %>
   </div>
-  
-  <div id ="languages">
+
+  <div id ="languages" class="form-section">
     <h4>Languages</h4>
-    <%= f.collection_check_boxes :language_ids, 
-    @languages, :id, :name %>
+    <%= collection_select(:user, :language_ids, @languages, :id, :name,{},{multiple:true}) %>
   </div>
-  
-  <div id ="horoscopes">
+
+  <div id ="horoscopes" class="form-section">
     <%= f.label :horoscope_id %>
     <%= f.select(:horoscope_id, Horoscope.all.collect { |h| [h.name, h.id] })  %>
   </div>
-
-  <%= submit_tag "Update" %> 
   
+  <%= field_set_tag do %>
+    <%= f.label :avatar %>
+    <%= f.file_field(:avatar, accept: 'image/png,image/gif.image/jpeg') %>
+  <% end %>
+
+
+  <%= submit_tag "Update" %>
+
 <% end %>
 </div> 

@@ -45,7 +45,7 @@ When(/^the user updates their basic info$/) do
   fill_in("Username", :with => @username)
   fill_in("Age", :with => 27)
   fill_in("Gender", :with => "Female")
-  fill_in("Image url", :with => "http://www.officialpsds.com/images/thumbs/MMs-Witch-psd87860.png")
+  #fill_in("Image url", :with => "http://www.officialpsds.com/images/thumbs/MMs-Witch-psd87860.png")
   fill_in("Preference", :with => "straight")
   fill_in("About", :with => @about)
   #check('user[ethnicity_ids][]')

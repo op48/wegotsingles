@@ -67,7 +67,8 @@ ALTER SEQUENCE ethnicities_id_seq OWNED BY ethnicities.id;
 CREATE TABLE horoscopes (
     id integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    name character varying(255)
 );
 
 
@@ -290,7 +291,9 @@ CREATE TABLE users (
     image_url character varying(255),
     preference character varying(255),
     birthday date,
-    height numeric(6,2)
+    height numeric(6,2),
+    horoscope character varying(255),
+    horoscope_id integer
 );
 
 
@@ -507,4 +510,10 @@ INSERT INTO schema_migrations (version) VALUES ('20140606081332');
 INSERT INTO schema_migrations (version) VALUES ('20140606081423');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606083219');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606085541');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606095914');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606100255');
 

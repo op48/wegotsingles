@@ -16,7 +16,7 @@ describe MessageHelper do
 
     context "read" do
       before do
-        @message = Message.create!(:read => true)
+        @message = Message.create!(:read => true, :body => "this is the body")
       end
 
       it "should return read" do
@@ -26,7 +26,7 @@ describe MessageHelper do
 
     context "unread" do
       before do
-        @message = Message.create!(:read => false)
+        @message = Message.create!(:read => false, :body => "this is the body")
       end
 
       it "should return unread" do

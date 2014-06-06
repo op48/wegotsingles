@@ -17,3 +17,14 @@
   <%= link_to "Edit Profile", edit_user_path(@user), class: "edit-user"  %>
 <% end %>
 </div>
+
+<h4>Send a message to this lovely user!</h4>
+
+<%= form_for :reply, url: messages_path, :method => :post, html: { id: "send-message-form" } do |m| %>
+
+  <%= m.hidden_field :sender_id %><br />
+  <%= m.hidden_field :recipient_id %><br />
+  <%= m.label :body %><br />
+  <%= m.text_area(:body, cols: 50, rows: 20, placeholder: 'Write your message here...') %><br />
+  <%= m.submit 'send' %>
+<% end %>

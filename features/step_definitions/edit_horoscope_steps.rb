@@ -5,10 +5,6 @@ Given(/^horoscopes exist$/) do
   end
 end
 
-Given(/^a user has horoscopes$/) do
-  @user.horoscopes(:horoscopes_ids => [1,2,3])
-end
-
 Given(/^the edit profile page has horoscopes$/) do
   @horoscopes = Horoscope.all
   @horoscopes.each do |h|
@@ -17,10 +13,10 @@ Given(/^the edit profile page has horoscopes$/) do
 end
 
 When(/^they choose to add a horoscope$/) do
-  check "Libra"
+  select("Libra", :from => 'Horoscope')
 end
 
 Then(/^their profile should be updated with their choice$/) do
   @user.reload
-  expect(@user.horoscopes).to eq([Horoscope.find_by(:name => "Libra" )])
+  expect(@user.horoscope).to eq(Horoscope.find_by(:name => "Libra" ))
 end

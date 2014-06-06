@@ -7,7 +7,7 @@ Feature: Languages
       And a user signs in
       And the user is on the edit profile page
       And the edit profile page has languages
- @wip
+
   Scenario: Add Languages to user profile
     When they choose to add a language
       And the user submits the form

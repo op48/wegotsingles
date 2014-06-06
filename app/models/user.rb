@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_many :incoming_messages, :class_name => "Message", :foreign_key => :message_id
+	has_many :outgoing_messages, :class_name => "Message", :foreign_key => :message_id
 
-	has_many :messages
   validates_uniqueness_of :username
   validates_presence_of :username
   validates_presence_of :preference
@@ -10,7 +11,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
 
 
   has_many :user_ethnicities

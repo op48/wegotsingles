@@ -26,12 +26,11 @@ User.find_or_create_by!(:id => "2") do |user|
 end
 
 joe = User.first
-100.times do |i|
-	@mess = Message.create(subject: "test#{i}", sender_username: "admin")
+
+20.times do |i|
+	@mess = Message.create(subject: "test#{i}", sender: joe, receiver: jenny88)
 	joe.messages << @mess
 end
-
-
 
 
 Ethnicity.find_or_create_by(:name => "Asian")
@@ -43,8 +42,6 @@ Ethnicity.find_or_create_by(:name => "Pacific Islander")
 Ethnicity.find_or_create_by(:name => "Hispanic")
 Ethnicity.find_or_create_by(:name => "White")
 Ethnicity.find_or_create_by(:name => "Other")
-
-
 
 Language.find_or_create_by(:name => "Afrikaans", :code => "AF")
 Language.find_or_create_by(:name => "Albanian", :code => "SQ")

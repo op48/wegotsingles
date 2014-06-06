@@ -136,6 +136,7 @@ CREATE TABLE messages (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     read boolean DEFAULT false
+    message_id integer
 );
 
 
@@ -294,6 +295,8 @@ CREATE TABLE users (
     height numeric(6,2),
     horoscope character varying(255),
     horoscope_id integer
+    preference character varying(255),
+    birthday date
 );
 
 
@@ -517,3 +520,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140606095914');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606100255');
 
+INSERT INTO schema_migrations (version) VALUES ('20140602160546');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603100012');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603165643');

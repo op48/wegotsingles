@@ -13,7 +13,8 @@ Given(/^a user exists$/) do
     :email => @email,
     :password => "password",
     :about => Faker::Lorem.paragraph,
-    :height => 167.00,
+    :height => 187.96,
+    :imperial_height => "6' 2",
     :preference => "male"
     )
 end

@@ -21,7 +21,7 @@ Feature: Messages
       And we select "delete" 
     Then that message should be deleted
 
-@wip
+
   Scenario: A user replies to a message
     Given that we are on the show message page
       When we click on the reply option

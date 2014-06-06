@@ -53,13 +53,6 @@ ActiveRecord::Schema.define(version: 20140606100255) do
     t.integer  "user_id"
   end
 
-  create_table "user_horoscopes", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "horoscope_id"
-    t.integer  "user_id"
-  end
-
   create_table "user_languages", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -84,16 +77,16 @@ ActiveRecord::Schema.define(version: 20140606100255) do
     t.string   "last_name"
     t.string   "username"
     t.string   "type"
+    t.string   "preference"
+    t.date     "birthday"
     t.integer  "age"
     t.string   "gender"
     t.text     "about"
     t.string   "image_url"
-    t.string   "preference"
-    t.date     "birthday"
     t.decimal  "height",                 precision: 6, scale: 2
+    t.boolean  "smoking"
     t.string   "horoscope"
     t.integer  "horoscope_id"
-    t.boolean  "smoking"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

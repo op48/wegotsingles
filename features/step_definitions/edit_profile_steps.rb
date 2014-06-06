@@ -1,5 +1,16 @@
+Given(/^ethnicities exist$/) do
+  @arabs = Ethnicity.create(:name => "Arabs")
+  @bengalis = Ethnicity.create(:name => "Bengalis")
+  @russians = Ethnicity.create(:name => "Russians")
+  @japanese = Ethnicity.create(:name => "Japanese")
+end
+
+
+Given(/^a user has ethnicities$/) do
+  @user.ethnicities(:ethnicity_ids => [1,2])
+end
+
 Given(/^a user signs in$/) do
-  #pending # express the regexp above with the code you wish you had
   visit new_user_session_path
   fill_in("Email", :with => @user.email)
   fill_in("Password", :with => @user.password)
@@ -7,9 +18,14 @@ Given(/^a user signs in$/) do
 end
 
 Given(/^the user is on the edit profile page$/) do
-  #pending # express the regexp above with the code you wish you had
   visit edit_user_path
-  
+end
+
+Then(/^ethnicities exist on the page$/) do
+  @ethnicities = Ethnicity.all
+  @ethnicities.each do |ethnicity|
+    expect(page.has_content?(ethnicity.name)).to be true
+  end
 end
 
 When(/^the user updates their basic info$/) do
@@ -25,16 +41,15 @@ When(/^the user updates their basic info$/) do
   fill_in("Image url", :with => "http://www.officialpsds.com/images/thumbs/MMs-Witch-psd87860.png")
   fill_in("Preference", :with => "straight")
   fill_in("About", :with => @about)
-
+  #check('user[ethnicity_ids][]')
+  check "Bengalis"
 end
 
 When(/^the user submits the form$/) do
   click_on "Update"
-
 end
 
 Then(/^his profile should be updated$/) do
-  #pending # express the regexp above with the code you wish you 
   @user.reload
   expect(@user.first_name).to eq(@first_name)
   expect(@user.last_name).to eq(@last_name)
@@ -44,5 +59,5 @@ Then(/^his profile should be updated$/) do
   expect(@user.image_url).to eq("http://www.officialpsds.com/images/thumbs/MMs-Witch-psd87860.png")
   expect(@user.preference).to eq("straight")
   expect(@user.about).to eq(@about)
-
+  expect(@user.ethnicities).to eq([@bengalis]) 
 end

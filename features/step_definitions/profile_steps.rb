@@ -5,6 +5,8 @@ Given(/^a user exists$/) do
   @user = User.create!(:first_name => Faker::Name.first_name, 
     :last_name => Faker::Name.last_name, 
     :username => Faker::Internet.user_name,
+    :email => Faker::Internet.email,
+    :password => Faker::Internet.password,
     :image_url => "http://thefuntimesguide.com/images/blogs/Ms_Green_MMs_on_Couch.jpg",
     :age => "27", 
     :type => "Female",
@@ -46,7 +48,7 @@ Then(/^We should see the user's age$/) do
   expect(page.has_content?(@user.age)).to be true
 end
 
-Then(/^We should see the user's type$/) do
+Then(/^We should see the user's gender$/) do
   #pending # express the regexp above with the code you wish you had
   expect(page.has_content?(@user.type)).to be true
 end

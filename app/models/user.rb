@@ -1,14 +1,16 @@
 class User < ActiveRecord::Base
 
+
 	has_many :messages
   validates_uniqueness_of :username
   validates_presence_of :username
   validates_presence_of :preference
 
-  # Include default devise modules. Others available are:
+
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
 
   def imperial_height=(imp_height) #stored as feet and inches(setting)
     feet,inches = imp_height.split("' ").map{ |h| h.to_i } 
@@ -23,5 +25,13 @@ class User < ActiveRecord::Base
     feet_inches_array = (inches.divmod 12).map{ |h| h.round }
     @feet_inches = feet_inches_array.join("' ")
   end
+
+  has_many :user_ethnicities
+  has_many :ethnicities, :through => :user_ethnicities
+  # accepts_nested_attributes_for :user_ethnicities
+
+  has_many :user_languages
+  has_many :languages, :through => :user_languages
+
 
 end

@@ -1,7 +1,7 @@
 <h2>Edit Profile Page</h2>
 
 <%= form_for :user, url: update_profile_user_path, :method => :put do |f| %>
-  
+
   <%= field_set_tag do %>
     <%= f.label :first_name %> 
     <%= f.text_field :first_name %>
@@ -28,7 +28,7 @@
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :type %> 
+    <%= f.label :type, text = "Gender" %> 
     <%= f.text_field :type %>
   <% end %>
 
@@ -52,10 +52,19 @@
     <%= f.text_field :imperial_height %> ft
   <% end %>
 
+  <div id ="ethnicities">
+    <h4>Ethnicities</h4>
+    <%= f.collection_check_boxes :ethnicity_ids, 
+    @ethnicities, :id, :name %>
+  </div>
+  
+  <div id ="languages">
+    <h4>Languages</h4>
+    <%= f.collection_check_boxes :language_ids, 
+    @languages, :id, :name %>
+  </div>
+
   <%= submit_tag "Update" %> 
   
 <% end %>
-
-
-
   

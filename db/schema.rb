@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140606095554) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "code"
   end
 
   create_table "messages", force: true do |t|
@@ -82,6 +83,8 @@ ActiveRecord::Schema.define(version: 20140606095554) do
     t.string   "preference"
     t.date     "birthday"
     t.decimal  "height",                 precision: 6, scale: 2
+
+    t.boolean  "smoking"
 
   end
 

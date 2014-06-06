@@ -61,6 +61,36 @@ ALTER SEQUENCE ethnicities_id_seq OWNED BY ethnicities.id;
 
 
 --
+-- Name: horoscopes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE horoscopes (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: horoscopes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE horoscopes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: horoscopes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE horoscopes_id_seq OWNED BY horoscopes.id;
+
+
+--
 -- Name: languages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -104,7 +134,10 @@ CREATE TABLE messages (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    read boolean DEFAULT false
+    read boolean DEFAULT false,
+    message_id integer,
+    recipient_id integer,
+    recipient_username character varying(255)
 );
 
 
@@ -227,7 +260,8 @@ CREATE TABLE users (
     image_url character varying(255),
     preference character varying(255),
     birthday date,
-    height numeric(6,2)
+    height numeric(6,2),
+    smoking boolean
 );
 
 
@@ -255,6 +289,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 --
 
 ALTER TABLE ONLY ethnicities ALTER COLUMN id SET DEFAULT nextval('ethnicities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY horoscopes ALTER COLUMN id SET DEFAULT nextval('horoscopes_id_seq'::regclass);
 
 
 --
@@ -298,6 +339,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY ethnicities
     ADD CONSTRAINT ethnicities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: horoscopes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY horoscopes
+    ADD CONSTRAINT horoscopes_pkey PRIMARY KEY (id);
 
 
 --
@@ -395,11 +444,17 @@ INSERT INTO schema_migrations (version) VALUES ('20140603091958');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603100012');
 
+INSERT INTO schema_migrations (version) VALUES ('20140603165643');
+
 INSERT INTO schema_migrations (version) VALUES ('20140604093425');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604121617');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604123643');
+
+INSERT INTO schema_migrations (version) VALUES ('20140604164334');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605093342');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605135034');
 
@@ -410,4 +465,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140605144615');
 INSERT INTO schema_migrations (version) VALUES ('20140605145844');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605152607');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605170129');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606081332');
 

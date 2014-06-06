@@ -69,6 +69,11 @@
     <%= f.collection_check_boxes :language_ids, 
     @languages, :id, :name %>
   </div>
+  
+  <div id ="horoscopes">
+    <%= f.label :horoscope_id %>
+    <%= f.select(:horoscope_id, Horoscope.all.collect { |h| [h.name, h.id] })  %>
+  </div>
 
   <%= submit_tag "Update" %> 
   

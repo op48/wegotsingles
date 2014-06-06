@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user = current_user
     @ethnicities = Ethnicity.all
     @languages = Language.all
+    @horoscopes = Horoscope.all
   end
 
   def update
@@ -24,6 +25,8 @@ class UsersController < ApplicationController
 
   private
   def allowed_params #whitelist
-    params.require(:user).permit(:first_name, :last_name, :username, :age, :type, :preference, :image_url, :about, :height, :imperial_height, :ethnicity_ids => [], :language_ids => []) #for each attribute in the model /white_listed
+    params.require(:user).permit(:first_name, :last_name, :username, :age, 
+    :type, :preference, :image_url, :about, :height, :imperial_height, :horoscope_id, 
+    :ethnicity_ids => [], :language_ids => []) #for each attribute in the model /white_listed
   end 
 end

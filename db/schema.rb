@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605152607) do
+ActiveRecord::Schema.define(version: 20140606100255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,27 +22,41 @@ ActiveRecord::Schema.define(version: 20140605152607) do
     t.string   "name"
   end
 
-  create_table "languages", force: true do |t|
+  create_table "horoscopes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
   end
 
+  create_table "languages", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "code"
+  end
+
   create_table "messages", force: true do |t|
     t.string   "subject"
     t.text     "body"
-    t.string   "sender_username"
     t.integer  "sender_id"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "read",            default: false
+    t.boolean  "read",         default: false
+    t.integer  "message_id"
+    t.integer  "recipient_id"
   end
 
   create_table "user_ethnicities", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ethnicity_id"
+    t.integer  "user_id"
+  end
+
+  create_table "user_horoscopes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "horoscope_id"
     t.integer  "user_id"
   end
 
@@ -76,6 +90,9 @@ ActiveRecord::Schema.define(version: 20140605152607) do
     t.string   "preference"
     t.date     "birthday"
     t.decimal  "height",                 precision: 6, scale: 2
+    t.string   "horoscope"
+    t.integer  "horoscope_id"
+    t.boolean  "smoking"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

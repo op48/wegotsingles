@@ -1,0 +1,61 @@
+// Place all the styles related to the Message controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	font-family: code_boldregular;
+}
+.messages{
+	display: inline-block;
+	padding: 10px;
+}
+
+#user{
+	margin: 5px;
+	font-size: 1.5em;
+	background-color: black;
+	color: white;
+	display: inline-block;
+}
+
+#subject{
+	background-color: brown;
+	color: white;
+	display: inline-block;
+	font-size: 1.5em;
+}
+
+#read {
+  background-color: #E8EEF7;
+}
+
+#unread {
+  background-color: #ffffff;
+}
+
+#one_mess{
+	border-bottom: 2px solid black;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+/* -------------  SHOW INDIVIDUAL MESSAGE ----------------*/
+.message-wrapper p {
+	display: block;
+	margin: 20px;
+}
+
+#message-subject {
+	margin: 20px;
+	display: inline-block;
+	border-bottom: 2px solid rgb(171,30,38);
+	font-size: 1.5em;
+}
+
+/* -------------- REPLY FORM ---------------------- */
+
+#reply-form {
+	margin: 20px;
+}

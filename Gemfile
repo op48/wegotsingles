@@ -9,9 +9,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
 gem 'thin'
+gem 'devise'
+gem 'will_paginate', '~> 3.0'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'simplecov', '~> 0.7.1', :require => false
+  gem 'rspec-rails', '~> 2'
   gem 'shoulda-matchers'
   gem 'faker'
   gem 'pry-byebug'
